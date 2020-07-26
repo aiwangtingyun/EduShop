@@ -16,6 +16,21 @@
     </modules>
 
     <dependencies>
+
+        <!-- service_base -->
+        <dependency>
+            <groupId>com.wang</groupId>
+            <artifactId>service_base</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- common_utils -->
+        <dependency>
+            <groupId>com.wang</groupId>
+            <artifactId>common_utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>

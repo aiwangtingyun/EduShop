@@ -1,2 +1,4 @@
 .idea/workspace.xml
 service/service_edu/target/*
+common/common_utils/target/*
+common/service_base/target/*
