@@ -24,12 +24,13 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- 依赖传递：service_base 已经包含了 common_utils -->
         <!-- common_utils -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.wang</groupId>
             <artifactId>common_utils</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -7,6 +7,7 @@ import com.wang.commonutis.Msg;
 import com.wang.eduservice.entity.EduTeacher;
 import com.wang.eduservice.entity.vo.TeacherQuery;
 import com.wang.eduservice.service.EduTeacherService;
+import com.wang.servicebase.exceptionhandler.EduShopException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,6 +36,11 @@ public class EduTeacherController {
     @ResponseBody
     @GetMapping(value = "/teachers")
     public Msg findAllTeachers() {
+        try {
+            int a = 10 / 0;
+        } catch (Exception e){
+            throw new EduShopException(2001, "处理自定义异常...");
+        }
         List<EduTeacher> teacherList = eduTeacherService.list(null);
         return Msg.ok().data("items", teacherList);
     }

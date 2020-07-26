@@ -24,7 +24,7 @@
     <!-- 设定父工程各依赖包版本 -->
     <properties>
         <java.version>1.8</java.version>
-        <guli.version>0.0.1-SNAPSHOT</guli.version>
+        <edushop.version>1.0-SNAPSHOT</edushop.version>
         <mybatis-plus.version>3.0.5</mybatis-plus.version>
         <velocity.version>2.0</velocity.version>
         <swagger.version>2.7.0</swagger.version>
