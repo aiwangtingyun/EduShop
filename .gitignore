@@ -1,6 +1,7 @@
 # IntelliJ IDEA
 .idea/*
 *.iml
+.mvn/*
 
 # 后端模块相关
 service/service_edu/target/*
