@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Data
-public class Msg {
+public class RetMsg {
 
     @ApiModelProperty(value = "是否成功")
     private boolean success;
@@ -23,11 +23,11 @@ public class Msg {
     private Map<String, Object> data = new HashMap<>();
 
     // 构造方法私有化
-    private Msg() {}
+    private RetMsg() {}
 
     // 成功
-    public static Msg ok() {
-        Msg msg = new Msg();
+    public static RetMsg ok() {
+        RetMsg msg = new RetMsg();
         msg.setSuccess(true);
         msg.setCode(ResultCode.SUCCESS);
         msg.setMessage("成功");
@@ -35,8 +35,8 @@ public class Msg {
     }
 
     // 失败
-    public static Msg error() {
-        Msg msg = new Msg();
+    public static RetMsg error() {
+        RetMsg msg = new RetMsg();
         msg.setSuccess(false);
         msg.setCode(ResultCode.ERROR);
         msg.setMessage("失败");
@@ -44,27 +44,27 @@ public class Msg {
     }
 
     // 下面方法用于对象的链式操作
-    public Msg success(boolean success) {
+    public RetMsg success(boolean success) {
         this.setSuccess(success);
         return this;
     }
 
-    public Msg message(String message) {
+    public RetMsg message(String message) {
         this.setMessage(message);
         return this;
     }
 
-    public Msg code(Integer code) {
+    public RetMsg code(Integer code) {
         this.setCode(code);
         return this;
     }
 
-    public Msg data(String key, Object value) {
+    public RetMsg data(String key, Object value) {
         this.data.put(key, value);
         return this;
     }
 
-    public Msg data(Map<String, Object> map) {
+    public RetMsg data(Map<String, Object> map) {
         this.setData(map);
         return this;
     }

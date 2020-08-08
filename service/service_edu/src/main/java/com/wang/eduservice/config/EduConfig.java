@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Profile;
 public class EduConfig {
 
     // SQL 执行性能分析插件
-    @Bean
+    // @Bean
     @Profile(value = {"dev", "test"})
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
