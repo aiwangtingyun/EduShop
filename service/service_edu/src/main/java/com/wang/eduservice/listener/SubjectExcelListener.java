@@ -10,10 +10,13 @@ import com.wang.servicebase.exceptionhandler.EduShopException;
 
 public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
 
-    //因为SubjectExcelListener不能交给spring进行管理，需要自己new，不能注入其他对象
-    //不能实现数据库操作
-    public EduSubjectService subjectService;
-    public SubjectExcelListener() {}
+    // 因为SubjectExcelListener不能交给spring进行管理，需要自己 new，所以不能使用@Autowired注入其他对象
+    // 因此只能定义操作数据库的 service 层变量，然后通过构造函数传过来
+    private EduSubjectService subjectService;
+
+    public SubjectExcelListener() {
+    }
+
     public SubjectExcelListener(EduSubjectService subjectService) {
         this.subjectService = subjectService;
     }
@@ -50,7 +53,7 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
     }
 
     //判断一级分类不能重复添加
-    private EduSubject existOneSubject(EduSubjectService subjectService,String name) {
+    private EduSubject existOneSubject(EduSubjectService subjectService, String name) {
         QueryWrapper<EduSubject> wrapper = new QueryWrapper<>();
         wrapper.eq("title",name);
         wrapper.eq("parent_id","0");
@@ -59,7 +62,7 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
     }
 
     //判断二级分类不能重复添加
-    private EduSubject existTwoSubject(EduSubjectService subjectService,String name,String pid) {
+    private EduSubject existTwoSubject(EduSubjectService subjectService, String name, String pid) {
         QueryWrapper<EduSubject> wrapper = new QueryWrapper<>();
         wrapper.eq("title",name);
         wrapper.eq("parent_id",pid);
@@ -69,7 +72,7 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
 
     @Override
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
-
+        System.out.println("-------- 所有Excel数据加载完成 --------");
     }
 }
 

@@ -38,9 +38,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/edu/teacher',
+    path: '/teacher',
     component: Layout,
-    redirect: '/edu/teacher/list',
+    redirect: '/teacher/list',
     name: 'TeacherAdmin',
     meta: { title: '讲师管理', icon: 'example' },
     children: [
@@ -62,6 +62,28 @@ export const constantRouterMap = [
         component: () => import('@/views/edu/teacher/form'),
         meta: { title: '修改讲师', noCache: true },
         hidden: true
+      }
+    ]
+  },
+
+  {
+    path: '/subject',
+    component: Layout,
+    redirect: '/subject/list',
+    name: '课程分类管理',
+    meta: { title: '课程分类管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: '课程分类列表',
+        component: () => import('@/views/edu/subject/list'),
+        meta: { title: '课程分类列表', icon: 'table' }
+      },
+      {
+        path: 'add',
+        name: '添加课程分类',
+        component: () => import('@/views/edu/subject/upload'),
+        meta: { title: '添加课程分类', icon: 'tree' }
       }
     ]
   },
@@ -96,7 +118,7 @@ export const constantRouterMap = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: 'Form', icon: 'upload.vue' }
       }
     ]
   },
