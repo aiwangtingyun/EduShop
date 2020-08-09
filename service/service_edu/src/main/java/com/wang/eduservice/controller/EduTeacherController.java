@@ -19,7 +19,7 @@ import java.util.List;
  * 讲师 前端控制器
  * </p>
  *
- * @author testjava
+ * @author 王廷云
  * @since 2020-07-25
  */
 @Api(tags = {"讲师管理"})

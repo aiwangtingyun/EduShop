@@ -1,8 +1,10 @@
 package com.wang.eduservice.controller;
 
 import com.wang.commonutis.RetMsg;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
+@Api(tags = {"用户登录"})
 @RestController
 @RequestMapping(value = "/eduservice/user")
 @CrossOrigin    // 解决跨域问题

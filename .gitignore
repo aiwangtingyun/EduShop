@@ -8,3 +8,7 @@ service/service_edu/target/*
 service/service_oos/target/*
 common/common_utils/target/*
 common/service_base/target/*
+target/*
+
+# 前端模块相关
+admin-ui/node_modules/*
