@@ -134,7 +134,7 @@ export default {
     addTeacher() {
       teacherApi.addTeacher(this.teacher)
         .then(response => {
-          if (response.success == true) {
+          if (response.success === true) {
             // 提示信息
             this.$message({
               type: 'success',
@@ -149,7 +149,7 @@ export default {
     updateTeacher() {
       teacherApi.updateTeacherInfo(this.teacher)
         .then(response => {
-          if (response.success == true) {
+          if (response.success === true) {
             // 提示信息
             this.$message({
               type: 'success',
