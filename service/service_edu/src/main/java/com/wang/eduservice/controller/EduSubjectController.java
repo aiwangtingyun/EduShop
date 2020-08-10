@@ -21,7 +21,7 @@ import java.util.List;
  * @author 王廷云
  * @since 2020-08-09
  */
-@Api(tags = {"课程管理"})
+@Api(tags = {"课程分类管理"})
 @RestController
 @RequestMapping(value = "/eduservice/subject")
 @CrossOrigin
