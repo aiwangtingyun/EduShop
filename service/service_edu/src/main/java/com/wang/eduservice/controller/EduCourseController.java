@@ -40,5 +40,15 @@ public class EduCourseController {
         return RetMsg.ok().data("courseId", id);
     }
 
+    // 根据课程id查询课程基本信息
+    @ApiOperation(value = "查询课程基本信息")
+    @GetMapping(value = "/getCourseInfo/{courseId}")
+    public RetMsg getCourseInfo(
+            @ApiParam(name = "courseId", value = "课程ID", required = true)
+            @PathVariable String courseId) {
+        CourseInfoVo courseInfoVo = courseService.getCourseInfo(courseId);
+
+        return RetMsg.ok().data("courseInfoVo", courseInfoVo);
+    }
 }
 

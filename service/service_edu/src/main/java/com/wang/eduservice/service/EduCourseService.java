@@ -14,5 +14,9 @@ import com.wang.eduservice.entity.vo.CourseInfoVo;
  */
 public interface EduCourseService extends IService<EduCourse> {
 
+    // 添加课程基本信息
     String saveCourseInfo(CourseInfoVo courseInfoVo);
+
+    // 根据课程id查询课程基本信息
+    CourseInfoVo getCourseInfo(String courseId);
 }

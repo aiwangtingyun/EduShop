@@ -56,9 +56,10 @@
                          placeholder="请填写课程的总课时数"/>
       </el-form-item>
 
-      <!-- 课程简介 -->
+      <!-- 课程简介：使用富文本编辑器 -->
       <el-form-item label="课程简介">
-        <el-input v-model="courseInfo.description" placeholder=" "/>
+        <!--<el-input v-model="courseInfo.description" placeholder=" "/>-->
+        <tinymce :height="300" v-model="courseInfo.description"/>
       </el-form-item>
 
       <!-- 课程封面 -->
@@ -89,9 +90,14 @@
 </template>
 
 <script>
-import course from '@/api/edu/course'
-import subject from '@/api/edu/subject'
+import courseApi from '@/api/edu/course'
+import subjectApi from '@/api/edu/subject'
+import Tinymce from '@/components/Tinymce'
 export default {
+  // 声明组件
+  components: {
+    Tinymce // 富文本组件
+  },
   data() {
     return {
       saveBtnDisabled:false,
@@ -105,6 +111,7 @@ export default {
         cover: '/static/cover01.png',
         price: 0
       },
+      courseId: '', // 课程id
       BASE_API: process.env.BASE_API, // 接口API地址
       teacherList:[],//封装所有的讲师
       subjectOneList:[],//一级分类
@@ -112,22 +119,37 @@ export default {
     }
   },
   created() {
-    //初始化一级分类
-    this.getOneSubject()
-    //初始化所有讲师
-    this.getListTeacher()
+    // 获取路由的参数值
+    if (this.$router.params && this.$router.params.id) {
+      // 获取课程id
+      this.courseId = this.$router.params.id
+      // 根据课程id查询课程基本信息
+      this.getCourseInfo()
+    } else {
+      //初始化一级分类
+      this.getOneSubject()
+      //初始化所有讲师
+      this.getListTeacher()
+    }
   },
   methods:{
+    // 根据课程id查询课程基本信息
+    getCourseInfo() {
+      courseApi.getCourseInfo(this.courseId)
+        .then(response => {
+          this.courseInfo = response.data.courseInfoVo
+        })
+    },
     //查询所有的一级分类
     getOneSubject() {
-      subject.getSubjectList()
+      subjectApi.getSubjectList()
         .then(response => {
           this.subjectOneList = response.data.list
         })
     },
     //查询所有的讲师
     getListTeacher() {
-      course.getListTeacher()
+      courseApi.getListTeacher()
         .then(response => {
           this.teacherList = response.data.items
         })
@@ -168,7 +190,7 @@ export default {
     },
     //保存和更新
     saveOrUpdate() {
-      course.addCourseInfo(this.courseInfo)
+      courseApi.addCourseInfo(this.courseInfo)
         .then(response => {
           if (response.success === true) {
             //提示
@@ -184,3 +206,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .tinymce-container {
+    line-height: 29px;
+  }
+</style>
