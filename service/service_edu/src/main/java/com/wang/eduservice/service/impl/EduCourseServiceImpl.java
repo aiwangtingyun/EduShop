@@ -1,13 +1,16 @@
 package com.wang.eduservice.service.impl;
 
+import com.wang.eduservice.entity.EduChapter;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.EduCourseDescription;
 import com.wang.eduservice.entity.vo.CourseInfoVo;
 import com.wang.eduservice.entity.vo.CoursePublishVo;
 import com.wang.eduservice.mapper.EduCourseMapper;
+import com.wang.eduservice.service.EduChapterService;
 import com.wang.eduservice.service.EduCourseDescriptionService;
 import com.wang.eduservice.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wang.eduservice.service.EduVideoService;
 import com.wang.servicebase.exceptionhandler.EduShopException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +27,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements EduCourseService {
 
-    // 课程描述注入
+    // 课程章节 service
+    @Autowired
+    private EduChapterService chapterService;
+
+    // 课程小节 service
+    @Autowired
+    private EduVideoService videoService;
+
+    // 课程描述 service
     @Autowired
     private EduCourseDescriptionService courseDescriptionService;
 
@@ -92,5 +103,26 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         //调用mapper
         CoursePublishVo publishCourseInfo = this.baseMapper.getPublishCourseInfo(courseId);
         return publishCourseInfo;
+    }
+
+    // 删除课程
+    @Override
+    public boolean removeCourse(String courseId) {
+        // 1、删除课程ID对应的所有小节
+        videoService.removeVideoByCourseId(courseId);
+
+        // 2、删除课程ID对应的所有章节
+        chapterService.removeChapterByCourseId(courseId);
+
+        // 3、删除课程ID对应的课程简介
+        courseDescriptionService.removeById(courseId);
+
+        // 4、删除课程本身
+        int result = this.baseMapper.deleteById(courseId);
+        if (result == 0) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -46,5 +46,20 @@ export default {
       url: `${api_name}/publishCourse/${courseId}`,
       method: 'post'
     })
+  },
+  // 获取课程列表
+  getCourseList() {
+    return request({
+      url: `${api_name}/list`,
+      method: 'get'
+    })
+  },
+
+  // 根据课程id删除课程
+  deleteCourseById(courseId) {
+    return request({
+      url: `${api_name}/deleteCourse/${courseId}`,
+      method: 'delete'
+    })
   }
 }

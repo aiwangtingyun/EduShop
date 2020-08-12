@@ -235,7 +235,6 @@
         videoApi.getVideoInfo(videoId)
           .then(response => {
             this.video = response.data.video
-            console.log(this.video)
           })
       },
 
@@ -317,7 +316,6 @@
 
       // 上一步
       previous() {
-        console.log('/course/info/'+this.courseId)
         this.$router.push({path:'/course/info/'+this.courseId})
       },
 

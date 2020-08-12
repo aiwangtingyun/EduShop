@@ -58,7 +58,6 @@
       getPublishCourseInfoById() {
         courseApi.getPublishCourseInfo(this.courseId)
           .then(response => {
-            console.log(response)
             this.coursePublishInfo = response.data.publishCourseInfo
           })
       },
