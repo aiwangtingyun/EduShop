@@ -19,4 +19,6 @@ public interface EduCourseService extends IService<EduCourse> {
 
     // 根据课程id查询课程基本信息
     CourseInfoVo getCourseInfo(String courseId);
+
+    void updateCourseInfo(CourseInfoVo courseInfoVo);
 }

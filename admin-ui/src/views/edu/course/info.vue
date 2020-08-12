@@ -120,26 +120,42 @@ export default {
   },
   created() {
     // 获取路由的参数值
-    if (this.$router.params && this.$router.params.id) {
+    if (this.$route.params && this.$route.params.id) {
       // 获取课程id
-      this.courseId = this.$router.params.id
+      this.courseId = this.$route.params.id
       // 根据课程id查询课程基本信息
       this.getCourseInfo()
     } else {
       //初始化一级分类
       this.getOneSubject()
-      //初始化所有讲师
-      this.getListTeacher()
     }
+
+    //初始化所有讲师
+    this.getListTeacher()
   },
   methods:{
-    // 根据课程id查询课程基本信息
+    // 根据课程id查询课程基本信息并进行数据回显
     getCourseInfo() {
       courseApi.getCourseInfo(this.courseId)
         .then(response => {
+          //得到回显的课程基本信息
           this.courseInfo = response.data.courseInfoVo
+          //获取所有一级分类和二级分类并回显
+          subjectApi.getSubjectList()
+            .then(response => {
+              // 拿到一级分类
+              this.subjectOneList = response.data.list
+              // 根据一级分类填充二级分类
+              for (let subjectOne of this.subjectOneList) {
+                if (subjectOne.id === this.courseInfo.subjectParentId) {
+                  this.subjectTwoList = subjectOne.children
+                  break
+                }
+              }
+            })
         })
     },
+
     //查询所有的一级分类
     getOneSubject() {
       subjectApi.getSubjectList()
@@ -147,6 +163,7 @@ export default {
           this.subjectOneList = response.data.list
         })
     },
+
     //查询所有的讲师
     getListTeacher() {
       courseApi.getListTeacher()
@@ -154,6 +171,7 @@ export default {
           this.teacherList = response.data.items
         })
     },
+
     //课程封面上传之前调用的方法
     beforeAvatarUpload(file) {
       const isJPG = file.type === 'image/jpeg'
@@ -168,17 +186,17 @@ export default {
       }
       return isJPG && isLt2M
     },
+
     //上传封面成功调用的方法
     handleAvatarSuccess(res, file) {
       this.courseInfo.cover = res.data.url
     },
-    //点击某个一级分类，触发change，显示对应二级分类
+
+    //一级分类选项发生变化，触发change，显示对应二级分类
     subjectLevelOneChanged(value) {
       //value就是一级分类id值
-      for(let i = 0; i < this.subjectOneList.length; i++) {
-        //每个一级分类
-        let oneSubject = this.subjectOneList[i]
-        //判断：所有一级分类id 和 点击一级分类id是否一样
+      for(let oneSubject of this.subjectOneList) {
+        //根据一级分类id填充二级分类
         if(value === oneSubject.id) {
           //从一级分类获取里面所有的二级分类
           this.subjectTwoList = oneSubject.children
@@ -188,8 +206,20 @@ export default {
         }
       }
     },
+
     //保存和更新
     saveOrUpdate() {
+      if (!this.courseInfo.id) {
+        // 添加
+        this.addCourse()
+      } else {
+        // 更新
+        this.updateCourse()
+      }
+    },
+
+    //添加课程信息
+    addCourse() {
       courseApi.addCourseInfo(this.courseInfo)
         .then(response => {
           if (response.success === true) {
@@ -200,6 +230,22 @@ export default {
             });
             //跳转到第二步
             this.$router.push({path:'/course/chapter/'+response.data.courseId})
+          }
+        })
+    },
+
+    // 更新课程信息
+    updateCourse() {
+      courseApi.updateCourseInfo(this.courseInfo)
+        .then(response => {
+          if (response.success === true) {
+            //提示
+            this.$message({
+              type: 'success',
+              message: '修改课程信息成功!'
+            });
+            //跳转到第二步
+            this.$router.push({path:'/course/chapter/'+this.courseId})
           }
         })
     }

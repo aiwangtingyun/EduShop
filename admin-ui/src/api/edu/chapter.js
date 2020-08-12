@@ -10,5 +10,38 @@ export default {
       method: 'get'
     })
   },
+
   // 添加章节
+  addChapter(chapter) {
+    return request({
+      url: `${api_name}/addChapter`,
+      method: 'post',
+      data: chapter
+    })
+  },
+
+  // 根据id查询章节信息
+  getChapterInfo(chapterId) {
+    return request({
+      url: `${api_name}/getChapterInfo/${chapterId}`,
+      method: 'get'
+    })
+  },
+
+  // 修改章节
+  updateChapter(chapter) {
+    return request({
+      url: `${api_name}/updateChapterInfo`,
+      method: 'post',
+      data: chapter
+    })
+  },
+
+  // 删除章节
+  deleteChapter(chapterId) {
+    return request({
+      url: `${api_name}/deleteChapter/${chapterId}`,
+      method: 'delete'
+    })
+  }
 }

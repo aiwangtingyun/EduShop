@@ -164,8 +164,9 @@ export default {
             // 回到列表页面
             this.getList()
           }) 
-      }) //点击取消，执行catch方法
-      
+      }).catch(() => {
+        //点击取消，执行catch方法
+      })
     }
   }
 }
