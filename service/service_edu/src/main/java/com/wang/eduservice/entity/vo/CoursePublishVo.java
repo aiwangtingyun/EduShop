@@ -17,10 +17,10 @@ public class CoursePublishVo {
     @ApiModelProperty(value = "课程数量")
     private Integer lessonNum;
 
-    @ApiModelProperty(value = "一级课程ID")
+    @ApiModelProperty(value = "一级课程名称")
     private String subjectLevelOne;
 
-    @ApiModelProperty(value = "二级课程ID")
+    @ApiModelProperty(value = "二级课程名称")
     private String subjectLevelTwo;
 
     @ApiModelProperty(value = "讲师名称")

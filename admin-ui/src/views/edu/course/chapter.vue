@@ -216,14 +216,15 @@
       openAddVideoDialog(chapterId) {
         // 弹窗
         this.dialogVideoFormVisible = true
+        // 重置显示数据
+        this.video = {
+          title: '',
+          sort: 0,
+          isFree: true,
+          videoSourceId: ''
+        }
         // 设置章节id
         this.video.chapterId = chapterId
-        // 重置清空显示数据
-        this.video.courseId = 0
-        this.video.title = ''
-        this.video.sort = 0
-        this.video.isFree = true
-        this.video.videoSourceId = ''
       },
 
       // 打开编辑小节弹窗
@@ -323,7 +324,7 @@
       // 下一步
       next() {
         //跳转到第三步
-        this.$router.push({path:'/course/publish/1'})
+        this.$router.push({path:'/course/publish/'+this.courseId})
       }
     }
   }

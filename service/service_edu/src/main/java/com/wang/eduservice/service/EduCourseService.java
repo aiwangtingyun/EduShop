@@ -3,6 +3,7 @@ package com.wang.eduservice.service;
 import com.wang.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wang.eduservice.entity.vo.CourseInfoVo;
+import com.wang.eduservice.entity.vo.CoursePublishVo;
 
 /**
  * <p>
@@ -21,4 +22,7 @@ public interface EduCourseService extends IService<EduCourse> {
     CourseInfoVo getCourseInfo(String courseId);
 
     void updateCourseInfo(CourseInfoVo courseInfoVo);
+
+    // 根据课程id查询课程最终发布确认信息
+    CoursePublishVo getPublishCourseInfo(String courseId);
 }

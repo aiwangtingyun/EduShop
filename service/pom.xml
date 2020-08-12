@@ -134,4 +134,18 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <resources>
+            <resource>
+                <!-- 把mappper的xml文件包含进来，否则maven不会编译非resouces下单xml文件 -->
+                <directory>src/main/java</directory>
+                <includes>
+                    <!-- ** 表示多层目录 -->
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>

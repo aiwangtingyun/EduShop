@@ -2,6 +2,7 @@ package com.wang.eduservice.controller;
 
 
 import com.wang.commonutis.RetMsg;
+import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.vo.CourseInfoVo;
 import com.wang.eduservice.entity.vo.CoursePublishVo;
 import com.wang.eduservice.service.EduCourseService;
@@ -70,8 +71,25 @@ public class EduCourseController {
     public RetMsg getPublishCourseInfo(
             @ApiParam(name = "courseId", value = "课程ID", required = true)
             @PathVariable String courseId) {
-        // CoursePublishVo coursePublishVo = courseService.getPublishCourseInfo(courseId);
-        return RetMsg.ok();
+        CoursePublishVo coursePublishVo = courseService.getPublishCourseInfo(courseId);
+        return RetMsg.ok().data("publishCourseInfo", coursePublishVo);
+    }
+
+    // 课程最终发布
+    @ApiOperation(value = "课程最终发布")
+    @PostMapping(value = "/publishCourse/{courseId}")
+    public RetMsg publishCourse(
+            @ApiParam(name = "courseId", value = "课程ID", required = true)
+            @PathVariable String courseId) {
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(courseId);
+        eduCourse.setStatus("Normal");  // 设置课程为发布状态
+        boolean flag = courseService.updateById(eduCourse);
+        if (flag) {
+            return RetMsg.ok();
+        } else {
+            return RetMsg.error();
+        }
     }
 }
 

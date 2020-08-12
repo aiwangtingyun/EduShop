@@ -32,5 +32,19 @@ export default {
       url: '/eduservice/admin/teachers',
       method: 'get',
     })
+  },
+  // 获取课程发布最终确认信息
+  getPublishCourseInfo(courseId) {
+    return request({
+      url: `${api_name}/getPublishCourseInfo/${courseId}`,
+      method: 'get'
+    })
+  },
+  // 课程最终发布
+  publishCourse(courseId) {
+    return request({
+      url: `${api_name}/publishCourse/${courseId}`,
+      method: 'post'
+    })
   }
 }
