@@ -3,7 +3,7 @@
 ## Nginx 配置
 后台管理的前端访问的端口统一为 9001 ：
 
-```js
+```javascript
 module.exports = merge(prodEnv, {
   ......
   BASE_API: '"http://localhost:9001/"',

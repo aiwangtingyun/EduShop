@@ -109,7 +109,9 @@ export default {
         this.getTeacherInfo(id)
       } else { // 路径没有id值则为添加操作
         // 清空表单数据
-        this.teacher = {}
+        this.teacher = {
+          avatar: '/static/cover01.png'
+        }
       }
     },
     // 根据ID查询讲师

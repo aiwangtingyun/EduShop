@@ -102,7 +102,7 @@
     display: block;
     float: left;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
   }
   .ccInfo .main {
     margin-left: 520px;

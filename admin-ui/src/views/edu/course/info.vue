@@ -70,7 +70,7 @@
           :before-upload="beforeAvatarUpload"
           :action="BASE_API+'/eduoss/file/upload'"
           class="avatar-uploader">
-          <img :src="courseInfo.cover">
+          <img class="cover" :src="courseInfo.cover">
         </el-upload>
       </el-form-item>
 
@@ -256,5 +256,8 @@ export default {
 <style scoped>
   .tinymce-container {
     line-height: 29px;
+  }
+  .cover {
+    border-radius: 12px;
   }
 </style>

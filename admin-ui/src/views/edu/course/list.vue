@@ -100,8 +100,7 @@
       <!-- 价格 -->
       <el-table-column label="价格" width="100" align="center" >
         <template slot-scope="scope">
-          {{ Number(scope.row.price) === 0 ? '免费' :
-          '¥' + scope.row.price.toFixed(2) }}
+          {{ Number(scope.row.price) === 0 ? '免费' : '¥ ' + scope.row.price.toFixed(2) }}
         </template>
       </el-table-column>
 
@@ -206,6 +205,7 @@
         for (let subjectOne of this.subjectOneList) {
           if (value === subjectOne.id) {
             this.subjectTwoList = subjectOne.children
+            this.courseQuery.subjectId = null
           }
         }
       },

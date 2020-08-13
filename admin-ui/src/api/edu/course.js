@@ -29,7 +29,7 @@ export default {
   // 查询所有讲师
   getListTeacher() {
     return request({
-      url: '/eduservice/admin/teachers',
+      url: '/eduservice/teacher/list',
       method: 'get',
     })
   },
