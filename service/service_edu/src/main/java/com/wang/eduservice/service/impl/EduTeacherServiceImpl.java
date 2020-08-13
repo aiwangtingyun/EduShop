@@ -27,7 +27,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         // 构建查询条件
         QueryWrapper<EduTeacher> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("gmt_create");
-        if (teacherQuery.isEmpty()) {
+        if (teacherQuery == null) {
             baseMapper.selectPage(pageParam, queryWrapper);
             return;
         }

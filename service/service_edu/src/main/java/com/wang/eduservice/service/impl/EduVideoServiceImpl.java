@@ -5,6 +5,7 @@ import com.wang.eduservice.entity.EduVideo;
 import com.wang.eduservice.mapper.EduVideoMapper;
 import com.wang.eduservice.service.EduVideoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,5 +25,15 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
         QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
         wrapper.eq("course_id", courseId);
         this.baseMapper.delete(wrapper);
+    }
+
+    // 根据章节id查询小节数量
+    @Override
+    public Integer getCountByChapterId(String chapterId) {
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id", chapterId);
+        Integer count = this.baseMapper.selectCount(wrapper);
+
+        return count;
     }
 }

@@ -240,7 +240,7 @@
 
       // 添加和修改小节
       saveOrUpdateVideo() {
-        if (!this.video.courseId) {
+        if (!this.video.id) {
           // 添加
           this.addVideo()
         } else {

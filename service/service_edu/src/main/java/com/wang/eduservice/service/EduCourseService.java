@@ -1,9 +1,13 @@
 package com.wang.eduservice.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wang.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wang.eduservice.entity.vo.CourseInfoVo;
 import com.wang.eduservice.entity.vo.CoursePublishVo;
+import com.wang.eduservice.entity.vo.CourseQuery;
+
+import java.util.List;
 
 /**
  * <p>
@@ -28,4 +32,7 @@ public interface EduCourseService extends IService<EduCourse> {
 
     // 删除课程
     boolean removeCourse(String courseId);
+
+    // 带条件的课程分页查询
+    void pageQuery(Page<EduCourse> pageParam, CourseQuery courseQuery);
 }

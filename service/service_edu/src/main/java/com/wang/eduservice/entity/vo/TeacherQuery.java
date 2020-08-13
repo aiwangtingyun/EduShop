@@ -18,8 +18,4 @@ public class TeacherQuery {
     @ApiModelProperty(value = "查询结束时间", example = "2019-12-01 10:10:10")
     private String end;
 
-    public boolean isEmpty() {
-        return this.name == null && this.level == null
-                && this.begin == null && this.end == null;
-    }
 }

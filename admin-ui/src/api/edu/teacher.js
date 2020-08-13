@@ -1,13 +1,21 @@
 import request from '@/utils/request'
 
-const api_name = '/eduservice/admin'
+const api_name = '/eduservice/teacher'
 
 export default {
+  // 获取讲师列表
+  getTeacherList() {
+    return request({
+      url: `${api_name}/list`,
+      method: 'get'
+    })
+  },
+
   // 获取讲师列表：带条件的分页查询
   getPageList(page, limit, teacherQuery){
     return request({
       // url: '/edu/admin/'+page+'/'+limit,
-      url: `${api_name}/pageTeacherCondition/${page}/${limit}`,
+      url: `${api_name}/pagePageList/${page}/${limit}`,
       method: 'post',
       // data 表示把对象转换为 JSon 数据格式传递到接口中
       data: teacherQuery

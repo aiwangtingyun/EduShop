@@ -9,7 +9,7 @@ import com.wang.eduservice.mapper.EduChapterMapper;
 import com.wang.eduservice.service.EduChapterService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wang.eduservice.service.EduVideoService;
-import org.apache.velocity.runtime.directive.Foreach;
+import com.wang.servicebase.exceptionhandler.EduShopException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,11 +69,24 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         return finalList;
     }
 
+    // 根据章节id删除章节
+    @Override
+    public boolean removeChapterById(String chapterId) {
+        // 判断章节中是否存在小节
+        if (videoService.getCountByChapterId(chapterId) > 0) {
+            throw new EduShopException(20001, "该分章节下存在视频课程，请先删除视频课程");
+        }
+        // 删除空小节的章节
+        int result = this.baseMapper.deleteById(chapterId);
+        return result != 0;
+    }
+
     // 根据课程id删除章节
     @Override
-    public void removeChapterByCourseId(String courseId) {
+    public boolean removeChapterByCourseId(String courseId) {
         QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
         wrapper.eq("course_id", courseId);
         this.baseMapper.delete(wrapper);
+        return false;
     }
 }

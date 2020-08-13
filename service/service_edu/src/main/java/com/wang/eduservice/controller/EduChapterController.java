@@ -79,18 +79,19 @@ public class EduChapterController {
         }
     }
 
-    // 根据章节id删除章节
-    @ApiOperation(value = "根据章节id删除章节")
-    @DeleteMapping(value = "/deleteChapter/{chapterId}")
-    public RetMsg deleteChapter(
+    // 根据id删除章节
+    @ApiOperation(value = "根据id删除章节")
+    @DeleteMapping(value = "/deleteById/{chapterId}")
+    public RetMsg deleteById(
             @ApiParam(name = "chapterId", value = "章节ID", required = true)
             @PathVariable String chapterId) {
-        boolean flag = chapterService.removeById(chapterId);
+        boolean flag = chapterService.removeChapterById(chapterId);
         if (flag) {
             return RetMsg.ok();
         } else {
             return RetMsg.error();
         }
     }
+
 }
 

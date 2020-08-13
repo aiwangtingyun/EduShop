@@ -1,10 +1,13 @@
 package com.wang.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wang.eduservice.entity.EduChapter;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.EduCourseDescription;
 import com.wang.eduservice.entity.vo.CourseInfoVo;
 import com.wang.eduservice.entity.vo.CoursePublishVo;
+import com.wang.eduservice.entity.vo.CourseQuery;
 import com.wang.eduservice.mapper.EduCourseMapper;
 import com.wang.eduservice.service.EduChapterService;
 import com.wang.eduservice.service.EduCourseDescriptionService;
@@ -15,6 +18,9 @@ import com.wang.servicebase.exceptionhandler.EduShopException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * <p>
@@ -125,4 +131,38 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
         return true;
     }
+
+    // 带条件的课程分页查询
+    @Override
+    public void pageQuery(Page<EduCourse> pageParam, CourseQuery courseQuery) {
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("gmt_create"); // 按创建时间降序排序
+
+        if (courseQuery == null) {
+            this.baseMapper.selectPage(pageParam, queryWrapper);
+            return;
+        }
+
+        String title = courseQuery.getTitle();
+        String teacherId = courseQuery.getTeacherId();
+        String subjectParentId = courseQuery.getSubjectParentId();
+        String subjectId = courseQuery.getSubjectId();
+
+        // 填充查询条件
+        if (!StringUtils.isEmpty(title)) {
+            queryWrapper.like("title", title);
+        }
+        if (!StringUtils.isEmpty(teacherId)) {
+            queryWrapper.eq("teaher_id", teacherId);
+        }
+        if (!StringUtils.isEmpty(subjectParentId)) {
+            queryWrapper.eq("subject_parent_id", subjectParentId);
+        }
+        if (!StringUtils.isEmpty(subjectId)) {
+            queryWrapper.eq("subject_id", subjectId);
+        }
+
+        this.baseMapper.selectPage(pageParam, queryWrapper);
+    }
+
 }

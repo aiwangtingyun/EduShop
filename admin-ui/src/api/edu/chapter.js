@@ -37,10 +37,10 @@ export default {
     })
   },
 
-  // 删除章节
+  // 根据章节id删除章节
   deleteChapter(chapterId) {
     return request({
-      url: `${api_name}/deleteChapter/${chapterId}`,
+      url: `${api_name}/deleteById/${chapterId}`,
       method: 'delete'
     })
   }

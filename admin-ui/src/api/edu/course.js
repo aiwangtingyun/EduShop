@@ -48,10 +48,11 @@ export default {
     })
   },
   // 获取课程列表
-  getCourseList() {
+  getCoursePageList(page, limit, courseQuery) {
     return request({
-      url: `${api_name}/list`,
-      method: 'get'
+      url: `${api_name}/pageList/${page}/${limit}`,
+      method: 'post',
+      data: courseQuery
     })
   },
 

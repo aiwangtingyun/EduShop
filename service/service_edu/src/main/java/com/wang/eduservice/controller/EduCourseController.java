@@ -1,10 +1,12 @@
 package com.wang.eduservice.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wang.commonutis.RetMsg;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.vo.CourseInfoVo;
 import com.wang.eduservice.entity.vo.CoursePublishVo;
+import com.wang.eduservice.entity.vo.CourseQuery;
 import com.wang.eduservice.service.EduCourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +40,26 @@ public class EduCourseController {
     public RetMsg getCourseList() {
         List<EduCourse> courseList = courseService.list(null);
         return RetMsg.ok().data("list", courseList);
+    }
+
+    // 带条件的课程分页查询
+    @ApiOperation(value = "带条件的课程分页查询")
+    @PostMapping(value = "/pageList/{page}/{limit}")
+    public RetMsg getCoursePageList(
+            @ApiParam(name = "page", value = "当前页码", required = true)
+            @PathVariable long page,
+            @ApiParam(name = "limit", value = "每页记录数", required = true)
+            @PathVariable long limit,
+            @ApiParam(name = "courseQuery", value = "查询对象", required = false)
+            @RequestBody(required = false) CourseQuery courseQuery) {   // @RequestBody 必须使用 Post 请求
+
+        Page<EduCourse> pageParam = new Page<>(page, limit);
+        courseService.pageQuery(pageParam, courseQuery);
+
+        List<EduCourse> records = pageParam.getRecords();
+        long total = pageParam.getTotal();
+
+        return RetMsg.ok().data("total", total).data("rows", records);
     }
 
     // 添加课程基本信息
