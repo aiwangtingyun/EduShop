@@ -23,7 +23,7 @@ public class OssController {
     @PostMapping(value = "/upload")
     public RetMsg uploadOssFile(
             @ApiParam(name = "file", value = "文件名", required = true)
-            MultipartFile file) {
+            @RequestParam("file") MultipartFile file) {
         //获取上传文件 MultipartFile
         //返回上传到oss的路径
         String url = ossService.uploadFileAvatar(file);
