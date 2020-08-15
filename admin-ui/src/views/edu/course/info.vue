@@ -168,7 +168,7 @@ export default {
     getListTeacher() {
       courseApi.getListTeacher()
         .then(response => {
-          this.teacherList = response.data.items
+          this.teacherList = response.data.list
         })
     },
 

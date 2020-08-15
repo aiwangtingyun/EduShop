@@ -125,13 +125,13 @@ public class EduCourseController {
         }
     }
 
-    // 删除课程
+    // 根据课程id删除课程
     @ApiOperation(value = "删除课程")
     @DeleteMapping(value = "/deleteCourse/{courseId}")
     public RetMsg deleteCourse(
             @ApiParam(name = "courseId", value = "课程ID", required = true)
             @PathVariable String courseId) {
-        boolean flag = courseService.removeCourse(courseId);
+        boolean flag = courseService.removeCourseById(courseId);
         if (flag) {
             return RetMsg.ok();
         } else {

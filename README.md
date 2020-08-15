@@ -41,6 +41,11 @@ http {
         location ~ /eduoss/ {
             proxy_pass http://localhost:8002;
         }
+        
+        # 如果访问路径包含 /eduvod/ 则转发到 8003 端口中处理vod上传逻辑
+        location ~ /eduvod/ {           
+            proxy_pass http://localhost:8003;
+        }
     }
 }
 ```

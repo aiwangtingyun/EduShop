@@ -30,8 +30,8 @@ public interface EduCourseService extends IService<EduCourse> {
     // 根据课程id查询课程最终发布确认信息
     CoursePublishVo getPublishCourseInfo(String courseId);
 
-    // 删除课程
-    boolean removeCourse(String courseId);
+    // 根据课程id删除课程
+    boolean removeCourseById(String courseId);
 
     // 带条件的课程分页查询
     void pageQuery(Page<EduCourse> pageParam, CourseQuery courseQuery);

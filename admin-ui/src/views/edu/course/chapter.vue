@@ -75,6 +75,25 @@
         </el-form-item>
         <el-form-item label="上传视频">
           <!-- TODO -->
+          <el-upload
+            :on-success="handleVodUploadSuccess"
+            :on-remove="handleVodRemove"
+            :before-remove="beforeVodRemove"
+            :on-exceed="handleUploadExceed"
+            :file-list="fileList"
+            :action="BASE_API+'/eduvod/video/upload'"
+            :limit="1"
+            class="upload-demo">
+            <el-button size="small" type="primary">上传视频</el-button>
+            <el-tooltip placement="right-end">
+              <div slot="content">最大支持1G，<br>
+                支持3GP、ASF、AVI、DAT、DV、FLV、F4V、<br>
+                GIF、M2T、M4V、MJ2、MJPEG、MKV、MOV、MP4、<br>
+                MPE、MPG、MPEG、MTS、OGG、QT、RM、RMVB、<br>
+                SWF、TS、VOB、WMV、WEBM 等视频格式上传</div>
+              <i class="el-icon-question"/>
+            </el-tooltip>
+          </el-upload>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -92,15 +111,17 @@
   </div>
 </template>
 <script>
-  import chapterApi from '@/api/edu/chapter'
-  import videoApi from '@/api/edu/video'
 
-  export default {
+import chapterApi from '@/api/edu/chapter'
+import videoApi from '@/api/edu/video'
+import vodApi from '@/api/edu/vod'
+
+export default {
     data() {
       return {
         saveBtnDisabled:false,
         courseId:'',//课程id
-        chapterVideoList:[],
+        chapterVideoList:[], // 章节和小节列表
         chapter:{ //封装章节数据
           title: '',
           sort: 0
@@ -109,10 +130,13 @@
           title: '',
           sort: 0,
           isFree: true,
-          videoSourceId: ''
+          videoSourceId: '',
+          videoOriginalName: ''
         },
         dialogChapterFormVisible:false,//章节弹框
-        dialogVideoFormVisible:false //小节弹框
+        dialogVideoFormVisible:false, //小节弹框
+        fileList: [], //上传文件列表
+        BASE_API: process.env.BASE_API // BASE_API接口地址
       }
     },
 
@@ -223,6 +247,7 @@
           isFree: true,
           videoSourceId: ''
         }
+        this.fileList = []
         // 设置章节id
         this.video.chapterId = chapterId
       },
@@ -235,6 +260,11 @@
         videoApi.getVideoInfo(videoId)
           .then(response => {
             this.video = response.data.video
+            if (this.video.videoOriginalName) {
+              this.fileList = [{'name': this.video.videoOriginalName}]
+            } else {
+              this.fileList = []
+            }
           })
       },
 
@@ -311,6 +341,54 @@
         chapterApi.getAllChapterVideo(this.courseId)
           .then(response => {
             this.chapterVideoList = response.data.chapterVideoList
+          })
+      },
+
+      // 上传视频成功调用的方法
+      handleVodUploadSuccess(response, file, fileList) {
+        if (response.success === true) {
+          this.$message({
+            type: 'success',
+            message: response.message
+          })
+          // 获取上传视频id
+          this.video.videoSourceId = response.data.videoId
+          // 获取上传视频名称
+          this.video.videoOriginalName = file.name
+        } else {
+          this.$message({
+            type: 'error',
+            message: response.message
+          })
+        }
+      },
+
+      // 上传视频数超过限制数量时调用的方法
+      handleUploadExceed() {
+        this.$message.warning('想要重新上传视频，请先删除已上传的视频')
+      },
+
+      // 点击x删除视频前调用的方法
+      beforeVodRemove(file, fileList) {
+        // 返回自定义确认框
+        return this.$confirm(`确定移除 ${file.name}？`)
+      },
+
+      // 点击确认删除时调用的方法
+      handleVodRemove() {
+        //调用接口的删除视频的方法
+        vodApi.deleteAliyunVod(this.video.videoSourceId)
+          .then(response => {
+            // 提示信息
+            this.$message({
+              type: 'success',
+              message: '删除视频成功!'
+            });
+            // 清空上传文件列表
+            this.fileList = []
+            // 清空视频id和视频名称
+            this.video.videoSourceId = ''
+            this.video.videoOriginalName = ''
           })
       },
 

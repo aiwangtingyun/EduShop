@@ -71,7 +71,7 @@ public class EduVideoController {
     public RetMsg deleteVideo(
             @ApiParam(name = "id", value = "课程ID", required = true)
             @PathVariable String id){
-        boolean flag = eduVideoService.removeById(id);
+        boolean flag = eduVideoService.removeVideoById(id);
         if (flag) {
             return RetMsg.ok();
         } else {
