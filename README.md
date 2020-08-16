@@ -20,6 +20,11 @@ module.exports = merge(prodEnv, {
 ```python
 # 注意：最好修改默认的 80端口到81
 http {
+
+    # 设置上传文件大小
+    client_max_body_size 1024m;
+
+    # 修改监听端口
     server {
         listen 81;
         ......
@@ -32,19 +37,20 @@ http {
         listen       9001;
         server_name  localhost;
 
-        # 如果访问路径包含 /eduservice/ 则转发到 8001 端口中处理业务逻辑
         location ~ /eduservice/ {
             proxy_pass http://localhost:8001;
         }
 
-        # 如果访问路径包含 /eduoss/ 则转发到 8002 端口中处理OSS上传逻辑
         location ~ /eduoss/ {
             proxy_pass http://localhost:8002;
         }
         
-        # 如果访问路径包含 /eduvod/ 则转发到 8003 端口中处理vod上传逻辑
         location ~ /eduvod/ {           
             proxy_pass http://localhost:8003;
+        }
+        
+        location ~ /educms/ {           
+            proxy_pass http://localhost:8004;
         }
     }
 }

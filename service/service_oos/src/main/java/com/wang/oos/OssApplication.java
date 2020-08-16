@@ -10,6 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class OssApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OssApplication.class);
+        SpringApplication.run(OssApplication.class, args);
     }
 }

@@ -110,7 +110,7 @@ export default {
       } else { // 路径没有id值则为添加操作
         // 清空表单数据
         this.teacher = {
-          avatar: '/static/cover01.png'
+          avatar: '/static/avatar.jpg'
         }
       }
     },
@@ -143,7 +143,7 @@ export default {
               message: '添加成功'
             })
             // 回到列表页面 路由跳转
-            this.$router.push({path:'/edu/teacher/list'})
+            this.$router.push({path:'/teacher/list'})
           }
         })
     },
@@ -158,7 +158,7 @@ export default {
               message: '修改成功'
             })
             // 回到列表页面 路由跳转
-            this.$router.push({path:'/edu/teacher/list'})
+            this.$router.push({path:'/teacher/list'})
           }
         })
     },

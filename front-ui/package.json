@@ -1,0 +1,28 @@
+{
+  "name": "edushop",
+  "version": "1.0.0",
+  "description": "EduShop在线教育前台网站",
+  "author": "WangTingYun <wty1793172997@163.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "nuxt": "^2.0.0",
+    "swiper": "^6.1.1",
+    "vue-awesome-swiper": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^4.19.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^4.0.0"
+  }
+}
