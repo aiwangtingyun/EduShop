@@ -5,8 +5,11 @@
 
 # 后端模块相关
 service/service_edu/target/*
-service/service_oos/target/*
+service/service_oss/target/*
 service/service_vod/target/*
+service/service_cms/target/*
+service/service_msm/target/*
+service/service_ucenter/target/*
 common/common_utils/target/*
 common/service_base/target/*
 target/*
