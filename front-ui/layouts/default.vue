@@ -29,37 +29,39 @@
           </ul>
           <!-- 用户登录注册信息 -->
           <ul class="h-r-login">
-            <li id="no-login">
-              <a href="/sing_in" title="登录">
+            <!-- 未登录状态 -->
+            <li v-if="!loginInfo.id" id="no-login">
+              <a href="/login" title="登录">
                 <em class="icon18 login-icon">&nbsp;</em>
                 <span class="vam ml5">登录</span>
               </a>
               |
-              <a href="/sign_up" title="注册">
+              <a href="/register" title="注册">
                 <span class="vam ml5">注册</span>
               </a>
             </li>
-            <li class="mr10 undis" id="is-login-one">
+            <!-- 已登陆状态 -->
+            <li v-if="loginInfo.id" class="mr10 undis" id="is-login-one">
               <a href="#" title="消息" id="headerMsgCountId">
                 <em class="icon18 news-icon">&nbsp;</em>
               </a>
               <q class="red-point" style="display: none">&nbsp;</q>
             </li>
-            <li class="h-r-user undis" id="is-login-two">
-              <a href="#" title>
+            <li v-if="loginInfo.id" class="h-r-user undis" id="is-login-two">
+              <a href="/ucenter" title>
                 <img
-                  src="~/assets/img/avatar-boy.gif"
+                  :src="loginInfo.avatar"
                   width="30"
                   height="30"
                   class="vam picImg"
                   alt
                 >
-                <span class="vam disIb" id="userName"></span>
+                <span class="vam disIb" id="userName">{{ loginInfo.nickname }}</span>
               </a>
               <a href="javascript:void(0)" title="退出" onclick="exit();" class="ml5">退出</a>
             </li>
-            <!-- /未登录显示第1 li；登录后显示第2，3 li -->
           </ul>
+          <!-- 搜索框 -->
           <aside class="h-r-search">
             <form action="#" method="post">
               <label class="h-r-s-box">
@@ -103,11 +105,11 @@
                 <a href="#" title="联系我们" target="_blank">联系我们</a>|
                 <a href="#" title="帮助中心" target="_blank">帮助中心</a>|
                 <a href="#" title="资源下载" target="_blank">资源下载</a>|
-                <span>服务热线：010-56253825(北京) 0755-85293825(深圳)</span>
-                <span>Email：info@atguigu.com</span>
+                <span>mobile：13418186670</span>
+                <span>Email：wty1793172997@163.com</span>
               </section>
               <section class="b-f-link mt10">
-                <span>©2018课程版权均归谷粒学院所有 京ICP备17055252号</span>
+                <span>©2020课程版权均归EduShop在线教育所有 京ICP备17055252号</span>
               </section>
             </section>
           </section>
@@ -136,5 +138,54 @@
   import "~/assets/css/global.css";
   import "~/assets/css/web.css";
 
-  export default {};
+  import cookie from 'js-cookie'
+  import loginApi from '@/api/login'
+
+  export default {
+    data() {
+      return {
+        token: '',
+        loginInfo: {
+          id: '',
+          age: '',
+          avatar: '',
+          mobile: '',
+          nickname: '',
+          sex: ''
+        }
+      }
+    },
+
+    created() {
+      // 如果路径中包含token值则代表微信登陆
+      this.token = this.$route.query.token
+      console.log(this.token)
+      if (this.token) {
+        this.wxLogin()
+      }
+      // 显示用户信息
+      this.showUserInfo()
+    }, 
+
+    methods: {
+      // 如果cookie中包含用户信息则显示用户信息
+      showUserInfo() {
+        // 从cookie中获取用户信息
+        let userStr = cookie.get('userInfo')
+        // 把字符串转换成json对象
+        if (userStr) {
+          this.loginInfo = JSON.parse(userStr);
+        }
+      },
+
+      // 退出登录
+      logout() {
+        // 清空cookie
+        cookie.set('token', '', {domain: 'localhost'})
+        cookie.set('userInfo', '', {domain: 'localhost'})
+        // 返回首页
+        window.location.href = '/'
+      }
+    }
+  };
 </script>
