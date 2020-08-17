@@ -71,6 +71,7 @@
       submitLogin() {
         loginApi.userLogin(this.user)
           .then(response => {
+            console.log(response)
             // 获取token并放到cookie中
             // 第一个参数为cookie名称，第二个为cookie值，第三个参数为cookie作用范围
             cookie.set('token', response.data.token, {domain: 'localhost'})
@@ -81,7 +82,7 @@
                 // 把用户信息放到 cookie 中
                 cookie.set('userInfo', this.loginInfo, {domain: 'localhost'})
                 // 跳转到首页
-                wondow.location.href = '/'
+                window.location.href = '/'
               })
           })
       },

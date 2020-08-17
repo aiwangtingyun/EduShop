@@ -52,6 +52,14 @@ http {
         location ~ /educms/ {           
             proxy_pass http://localhost:8004;
         }
+        
+        location ~ /edumsm/ {           
+            proxy_pass http://localhost:8005;
+        }
+        
+        location ~ /educenter/ {           
+            proxy_pass http://localhost:8150;
+        }
     }
 }
 ```

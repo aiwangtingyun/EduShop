@@ -41,13 +41,15 @@
               </a>
             </li>
             <!-- 已登陆状态 -->
-            <li v-if="loginInfo.id" class="mr10 undis" id="is-login-one">
+            <li v-if="loginInfo.id" class="mr10" id="is-login-one">
+              <!-- 消息数量 -->
               <a href="#" title="消息" id="headerMsgCountId">
                 <em class="icon18 news-icon">&nbsp;</em>
               </a>
               <q class="red-point" style="display: none">&nbsp;</q>
             </li>
-            <li v-if="loginInfo.id" class="h-r-user undis" id="is-login-two">
+            <li v-if="loginInfo.id" class="h-r-user" id="is-login-two">
+              <!-- 用户头像 -->
               <a href="/ucenter" title>
                 <img
                   :src="loginInfo.avatar"
@@ -56,6 +58,7 @@
                   class="vam picImg"
                   alt
                 >
+                <!-- 用户昵称 -->
                 <span class="vam disIb" id="userName">{{ loginInfo.nickname }}</span>
               </a>
               <a href="javascript:void(0)" title="退出" onclick="exit();" class="ml5">退出</a>
@@ -158,11 +161,11 @@
 
     created() {
       // 如果路径中包含token值则代表微信登陆
-      this.token = this.$route.query.token
-      console.log(this.token)
-      if (this.token) {
-        this.wxLogin()
-      }
+      // this.token = this.$route.query.token
+      // console.log(this.token)
+      // if (this.token) {
+      //   this.wxLogin()
+      // }
       // 显示用户信息
       this.showUserInfo()
     }, 
@@ -175,6 +178,7 @@
         // 把字符串转换成json对象
         if (userStr) {
           this.loginInfo = JSON.parse(userStr);
+          console.log("loginInfo : ", this.loginInfo)
         }
       },
 
