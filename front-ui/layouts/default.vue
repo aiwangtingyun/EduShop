@@ -61,7 +61,7 @@
                 <!-- 用户昵称 -->
                 <span class="vam disIb" id="userName">{{ loginInfo.nickname }}</span>
               </a>
-              <a href="javascript:void(0)" title="退出" onclick="exit();" class="ml5">退出</a>
+              <a href="javascript:void(0)" title="退出" @click="logout();" class="ml5">退出</a>
             </li>
           </ul>
           <!-- 搜索框 -->
@@ -95,7 +95,7 @@
           </h4>
           <ul class="of flink-list">
             <li>
-              <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank">尚硅谷</a>
+              <a href="#" title="EduShop" target="_blank">EduShop在线教育</a>
             </li>
           </ul>
           <div class="clear"></div>
@@ -161,16 +161,30 @@
 
     created() {
       // 如果路径中包含token值则代表微信登陆
-      // this.token = this.$route.query.token
-      // console.log(this.token)
-      // if (this.token) {
-      //   this.wxLogin()
-      // }
+      this.token = this.$route.query.token
+      console.log(this.token)
+      if (this.token) {
+        this.wxLogin()
+      }
       // 显示用户信息
       this.showUserInfo()
     }, 
 
     methods: {
+      // 微信登录
+      wxLogin() {
+        // 把token值放到cookie里面
+        cookie.set('token', this.token, {domain: 'localhost'})
+        cookie.set('userInfo', '', {domain: 'localhost'})
+        // 根据token值获取用户信息
+        loginApi.getUserInfo()
+            .then(response => {
+              // 保存用户信息
+              this.loginInfo = response.data.userInfo
+              cookie.set('userInfo', this.loginInfo, {domain: 'localhost'})
+            })
+      },
+
       // 如果cookie中包含用户信息则显示用户信息
       showUserInfo() {
         // 从cookie中获取用户信息
