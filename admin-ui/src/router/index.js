@@ -28,12 +28,14 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/EduShop',
-    name: 'EduShop',
-    hidden: true,
+    redirect: '/user',
+    name: 'UserCenter',
+    meta: { title: '用户信息', icon: 'user' },
     children: [{
-      path: 'edushop',
-      component: () => import('@/views/dashboard/index')
+      path: 'user',
+      name: 'User',
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: '用户信息', icon: 'user' }
     }]
   },
 
@@ -42,7 +44,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/teacher/list',
     name: 'TeacherAdmin',
-    meta: { title: '讲师管理', icon: 'example' },
+    meta: { title: '讲师管理', icon: 'peoples' },
     children: [
       {
         path: 'list',
@@ -71,7 +73,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/subject/list',
     name: 'SubjectAdmin',
-    meta: { title: '课程分类管理', icon: 'example' },
+    meta: { title: '课程分类管理', icon: 'guide' },
     children: [
       {
         path: 'list',
@@ -93,7 +95,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/course/list',
     name: 'CourseAdmin',
-    meta: { title: '课程管理', icon: 'example' },
+    meta: { title: '课程管理', icon: 'dict' },
     children: [
       {
         path: 'list',
@@ -156,12 +158,13 @@ export const constantRouterMap = [
   {
     path: '/form',
     component: Layout,
+    meta: { title: 'form', icon: 'upload' },
     children: [
       {
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'upload.vue' }
+        meta: { title: 'Form', icon: 'upload' }
       }
     ]
   },

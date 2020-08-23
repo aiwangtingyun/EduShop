@@ -6,7 +6,7 @@ import com.wang.commonutis.RetMsg;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.vo.CourseInfoVo;
 import com.wang.eduservice.entity.vo.CoursePublishVo;
-import com.wang.eduservice.entity.vo.CourseQuery;
+import com.wang.eduservice.entity.vo.CourseQueryVo;
 import com.wang.eduservice.service.EduCourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +14,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,11 +49,11 @@ public class EduCourseController {
             @PathVariable long page,
             @ApiParam(name = "limit", value = "每页记录数", required = true)
             @PathVariable long limit,
-            @ApiParam(name = "courseQuery", value = "查询对象", required = false)
-            @RequestBody(required = false) CourseQuery courseQuery) {   // @RequestBody 必须使用 Post 请求
+            @ApiParam(name = "courseQueryVo", value = "查询对象", required = false)
+            @RequestBody(required = false) CourseQueryVo courseQueryVo) {   // @RequestBody 必须使用 Post 请求
 
         Page<EduCourse> pageParam = new Page<>(page, limit);
-        courseService.pageQuery(pageParam, courseQuery);
+        courseService.pageQuery(pageParam, courseQueryVo);
 
         List<EduCourse> records = pageParam.getRecords();
         long total = pageParam.getTotal();

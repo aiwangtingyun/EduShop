@@ -14,8 +14,8 @@ import java.util.List;
 
 public class VodSDKTest {
 
-    private static String accessKeyId = "your-accessKeyId";
-    private static String accessKeySecret = "your-accessKeySecret";
+    private static String accessKeyId = "accessKeyId";
+    private static String accessKeySecret = "accessKeySecret";
 
     // 视频上传
     @Test
@@ -51,7 +51,7 @@ public class VodSDKTest {
     @Test
     public void getPlayAuth() throws Exception{
         // 视频id
-        String videoId = "7c3fa0b6376046718c8b3beb6002b4e3";
+        String videoId = "a1a08f1b7ed2419aa636517eee738901";
 
         // 初始化 vod 客户端、请求对象和相应对象
         DefaultAcsClient client = AliyunVodSDKUtils.initVodClient(accessKeyId, accessKeySecret);

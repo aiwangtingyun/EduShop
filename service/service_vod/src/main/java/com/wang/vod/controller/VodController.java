@@ -1,7 +1,13 @@
 package com.wang.vod.controller;
 
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.wang.commonutis.RetMsg;
+import com.wang.servicebase.exceptionhandler.EduShopException;
 import com.wang.vod.service.VodService;
+import com.wang.vod.utils.AliyunVodSDKUtils;
+import com.wang.vod.utils.ConstantVodUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -52,6 +58,35 @@ public class VodController {
             @RequestParam("videoIdList") List<String> videoIdList) {
         vodService.removeVideoBatch(videoIdList);
         return RetMsg.ok().message("视频删除成功");
+    }
+
+    // 根据视频id获取视频播放凭证
+    @ApiOperation(value = "根据视频id获取视频播放凭证")
+    @GetMapping(value = "/getPlayAuth/{videoId}")
+    public RetMsg getPlayAuth(
+            @ApiParam(name = "videoId", value = "视频id")
+            @PathVariable String videoId) {
+        // 阿里云存储密钥
+        String accessKeyId = ConstantVodUtils.ACCESS_KEY_ID;
+        String accessKeySecret = ConstantVodUtils.ACCESS_KEY_SECRET;
+
+        try {
+            // 创建初始化对象
+            DefaultAcsClient client = AliyunVodSDKUtils.initVodClient(accessKeyId, accessKeySecret);
+
+            // 创建请求对象
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            request.setVideoId(videoId);
+
+            // 发送请求
+            GetVideoPlayAuthResponse response = client.getAcsResponse(request);
+
+            // 返回凭证
+            String playAuth = response.getPlayAuth();
+            return RetMsg.ok().data("playAuth", playAuth);
+        } catch (Exception e) {
+            throw new EduShopException(20001, "获取凭证失败");
+        }
     }
 
 }

@@ -7,7 +7,7 @@
       <!-- 一级分类 -->
       <el-form-item label="课程类别">
         <el-select
-          v-model="courseQuery.subjectParentId"
+          v-model="courseQueryVo.subjectParentId"
           placeholder="请选择"
           @change="subjectLevelOneChanged">
           <el-option
@@ -17,7 +17,7 @@
             :value="subject.id"/>
         </el-select>
         <!-- 二级分类 -->
-        <el-select v-model="courseQuery.subjectId" placeholder="请选择">
+        <el-select v-model="courseQueryVo.subjectId" placeholder="请选择">
           <el-option
             v-for="subject in subjectTwoList"
             :key="subject.id"
@@ -28,13 +28,13 @@
 
       <!-- 标题 -->
       <el-form-item>
-        <el-input v-model="courseQuery.title" placeholder="课程标题"/>
+        <el-input v-model="courseQueryVo.title" placeholder="课程标题"/>
       </el-form-item>
 
       <!-- 讲师 -->
       <el-form-item>
         <el-select
-          v-model="courseQuery.teacherId"
+          v-model="courseQueryVo.teacherId"
           placeholder="请选择讲师">
           <el-option
             v-for="teacher in teacherList"
@@ -150,8 +150,8 @@
         courseList: null, // 数据列表
         total: 0, // 总记录数
         page: 1, // 页码
-        limit: 10, // 每页记录数
-        courseQuery: { // 查询条件
+        limit: 8, // 每页记录数
+        courseQueryVo: { // 查询条件
           title: null, // 课程标题
           teacherId: null, // 课程讲师
           subjectParentId: null, // 一级课程id
@@ -174,7 +174,7 @@
       getCourseList(page=1) {
         this.page = page
         this.listLoading = true
-        courseApi.getCoursePageList(this.page, this.limit, this.courseQuery)
+        courseApi.getCoursePageList(this.page, this.limit, this.courseQueryVo)
           .then(response => {
             if (response.success === true) {
               this.total = response.data.total
@@ -205,7 +205,7 @@
         for (let subjectOne of this.subjectOneList) {
           if (value === subjectOne.id) {
             this.subjectTwoList = subjectOne.children
-            this.courseQuery.subjectId = null
+            this.courseQueryVo.subjectId = null
           }
         }
       },
@@ -213,7 +213,7 @@
       // 清空查询数据
       resetData() {
         // 清空表单输入项数据
-        this.courseQuery = {}
+        this.courseQueryVo = {}
         // 清空二级课程列表
         this.subjectTwoList = []
         // 回显所有课程列表数据

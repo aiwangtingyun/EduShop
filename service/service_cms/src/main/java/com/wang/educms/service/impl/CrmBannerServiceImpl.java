@@ -26,7 +26,7 @@ public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner
     @Override
     public List<CrmBanner> getBannerList() {
         QueryWrapper<CrmBanner> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("id");
+        wrapper.orderByAsc("sort");
         wrapper.last("limit 3");
         List<CrmBanner> bannerList = this.baseMapper.selectList(wrapper);
         return bannerList;

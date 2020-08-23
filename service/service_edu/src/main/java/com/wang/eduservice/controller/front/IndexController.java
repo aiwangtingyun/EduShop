@@ -34,7 +34,7 @@ public class IndexController {
     public RetMsg index() {
         // 查询前8条热门课程
         QueryWrapper<EduCourse> courseWrapper = new QueryWrapper<>();
-        courseWrapper.orderByDesc("id");
+        courseWrapper.orderByAsc("id");
         courseWrapper.last("limit 8");
         List<EduCourse> courseList = courseService.list(courseWrapper);
 

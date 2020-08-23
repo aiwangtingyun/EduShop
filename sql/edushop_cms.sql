@@ -1,6 +1,6 @@
-﻿# Host: localhost  (Version 5.7.19)
-# Date: 2019-11-18 15:49:41
-# Generator: MySQL-Front 6.1  (Build 1.26)
+﻿# Host: localhost  (Version 5.7.30)
+# Date: 2020-08-10 11:49:32
+# Generator: SQLyog Ultimate v12.09 (64 bit)
 
 
 #
@@ -24,4 +24,9 @@ CREATE TABLE `crm_banner` (
 # Data for table "crm_banner"
 #
 
-INSERT INTO `crm_banner` VALUES ('1194556896025845762','test1','https://online-teach-file.oss-cn-beijing.aliyuncs.com/cms/2019/11/14/297acd3b-b592-4cfb-a446-a28310369675.jpg','/course',1,0,'2019-11-13 18:05:32','2019-11-18 10:28:22'),('1194607458461216769','test2','https://online-teach-file.oss-cn-beijing.aliyuncs.com/cms/2019/11/13/8f80790d-d736-4842-a6a4-4dcb0d684d4e.jpg','/teacher',2,0,'2019-11-13 21:26:27','2019-11-14 09:12:15');
+insert into `crm_banner` 
+  (`id`, `title`, `image_url`, `link_url`, `sort`, `is_deleted`, `gmt_create`, `gmt_modified`) 
+values
+  ('1297367367277391873','banner01','https://edushop-files.oss-cn-shenzhen.aliyuncs.com/2020/08/23/banner02.jpg','/course','1','0','2020-08-23 10:57:39','2020-08-23 10:57:39'),
+  ('1297367601294389249','banner02','https://edushop-files.oss-cn-shenzhen.aliyuncs.com/2020/08/23/banner03.jpg','/course','2','0','2020-08-23 10:58:35','2020-08-23 10:58:35'),
+  ('1297389503815639042','banner03','https://edushop-files.oss-cn-shenzhen.aliyuncs.com/2020/08/23/banner04.jpg','/course','3','0','2020-08-23 12:25:37','2020-08-23 12:25:37');

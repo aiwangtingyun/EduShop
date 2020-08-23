@@ -2,12 +2,9 @@ package com.wang.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wang.eduservice.entity.EduChapter;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.EduCourseDescription;
-import com.wang.eduservice.entity.vo.CourseInfoVo;
-import com.wang.eduservice.entity.vo.CoursePublishVo;
-import com.wang.eduservice.entity.vo.CourseQuery;
+import com.wang.eduservice.entity.vo.*;
 import com.wang.eduservice.mapper.EduCourseMapper;
 import com.wang.eduservice.service.EduChapterService;
 import com.wang.eduservice.service.EduCourseDescriptionService;
@@ -20,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -134,19 +133,19 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     // 带条件的课程分页查询
     @Override
-    public void pageQuery(Page<EduCourse> pageParam, CourseQuery courseQuery) {
+    public void pageQuery(Page<EduCourse> pageParam, CourseQueryVo courseQueryVo) {
         QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("gmt_create"); // 按创建时间降序排序
 
-        if (courseQuery == null) {
+        if (courseQueryVo == null) {
             this.baseMapper.selectPage(pageParam, queryWrapper);
             return;
         }
 
-        String title = courseQuery.getTitle();
-        String teacherId = courseQuery.getTeacherId();
-        String subjectParentId = courseQuery.getSubjectParentId();
-        String subjectId = courseQuery.getSubjectId();
+        String title = courseQueryVo.getTitle();
+        String teacherId = courseQueryVo.getTeacherId();
+        String subjectParentId = courseQueryVo.getSubjectParentId();
+        String subjectId = courseQueryVo.getSubjectId();
 
         // 填充查询条件
         if (!StringUtils.isEmpty(title)) {
@@ -163,6 +162,62 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         }
 
         this.baseMapper.selectPage(pageParam, queryWrapper);
+    }
+
+    // 前端带条件分页查询课程列表
+    @Override
+    public Map<String, Object> getCourseFrontList(Page<EduCourse> pageParam, CourseFrontVo courseFrontVo) {
+        // 根据讲师id查询所讲课程
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+
+        // 判断条件值是否为空，不为空拼接
+        if(!StringUtils.isEmpty(courseFrontVo.getSubjectParentId())) { //一级分类
+            wrapper.eq("subject_parent_id",courseFrontVo.getSubjectParentId());
+        }
+        if(!StringUtils.isEmpty(courseFrontVo.getSubjectId())) { //二级分类
+            wrapper.eq("subject_id",courseFrontVo.getSubjectId());
+        }
+        if(!StringUtils.isEmpty(courseFrontVo.getBuyCountSort())) { //关注度
+            wrapper.orderByDesc("buy_count");
+        }
+        if (!StringUtils.isEmpty(courseFrontVo.getGmtCreateSort())) { //最新
+            wrapper.orderByDesc("gmt_create");
+        }
+
+        if (!StringUtils.isEmpty(courseFrontVo.getPriceSort())) {//价格
+            wrapper.orderByDesc("price");
+        }
+
+        // 根据条件进行查询
+        baseMapper.selectPage(pageParam, wrapper);
+
+        // 获取查询结果数据
+        List<EduCourse> records = pageParam.getRecords();
+        long current = pageParam.getCurrent();
+        long pages = pageParam.getPages();
+        long size = pageParam.getSize();
+        long total = pageParam.getTotal();
+        boolean hasNext = pageParam.hasNext();//下一页
+        boolean hasPrevious = pageParam.hasPrevious();//上一页
+
+        // 封装分页数据
+        Map<String, Object> map = new HashMap<>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+
+        // 返回查询结果
+        return map;
+    }
+
+    // 获取课程详解信息
+    @Override
+    public CourseWebVo getWebCourseInfo(String courseId) {
+        return baseMapper.getWebCourseInfo(courseId);
     }
 
 }

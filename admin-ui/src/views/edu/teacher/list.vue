@@ -4,11 +4,11 @@
     <!--查询表单-->
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item>
-        <el-input v-model="teacherQuery.name" placeholder="讲师名"/>
+        <el-input v-model="teacherQueryVo.name" placeholder="讲师名"/>
       </el-form-item>
 
       <el-form-item>
-        <el-select v-model="teacherQuery.level" clearable placeholder="讲师头衔">
+        <el-select v-model="teacherQueryVo.level" clearable placeholder="讲师头衔">
           <el-option :value="1" label="高级讲师"/>
           <el-option :value="2" label="首席讲师"/>
         </el-select>
@@ -16,7 +16,7 @@
 
       <el-form-item label="添加时间">
         <el-date-picker
-          v-model="teacherQuery.begin"
+          v-model="teacherQueryVo.begin"
           type="datetime"
           placeholder="选择开始时间"
           value-format="yyyy-MM-dd HH:mm:ss"
@@ -25,7 +25,7 @@
       </el-form-item>
       <el-form-item>
         <el-date-picker
-          v-model="teacherQuery.end"
+          v-model="teacherQueryVo.end"
           type="datetime"
           placeholder="选择截止时间"
           value-format="yyyy-MM-dd HH:mm:ss"
@@ -107,7 +107,7 @@ export default {
       total: 0, // 总记录数
       page: 1, // 页码
       limit: 5, // 每页记录数
-      teacherQuery: { // 查询条件
+      teacherQueryVo: { // 查询条件
         name: '',
         level: null,
         begin: null,
@@ -127,7 +127,7 @@ export default {
     // 获取讲师列表：带条件的分页查询
     getList(page=1) {
       this.page = page
-      teacherApi.getPageList(this.page, this.limit, this.teacherQuery)
+      teacherApi.getPageList(this.page, this.limit, this.teacherQueryVo)
           .then(response => { // 请求成功
             // response 为接口返回的数据
             if (response.success === true) {
@@ -143,7 +143,7 @@ export default {
     // 重置表单查询数据
     resetData() {
       // 清空表单数据
-      this.teacherQuery = {}
+      this.teacherQueryVo = {}
       // 查询所有讲师数据
       this.getList()
     },

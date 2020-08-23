@@ -178,13 +178,19 @@ export default {
       const isPNG = file.type === 'image/png'
       const isLt2M = file.size / 1024 / 1024 < 2
 
-      if (!isJPG || !isPNG) {
-        this.$message.error('上传头像图片只能是 JPG 和 PNG 格式!')
-      }
+      // 检查图片大小
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
+        this.$message.error('上传图片大小不能超过 2MB!')
+        return false
       }
-      return isJPG && isLt2M
+
+      // 检查图片格式
+      if (isJPG || isPNG) {
+        return true
+      } else {
+        this.$message.error('上传图片只能是 JPG 和 PNG 格式!')
+        return false
+      }
     },
 
     //上传封面成功调用的方法

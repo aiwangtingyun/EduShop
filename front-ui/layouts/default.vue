@@ -20,10 +20,11 @@
             <router-link to="/teacher" tag="li" active-class="current">
               <a>名师</a>
             </router-link>
-            <router-link to="/article" tag="li" active-class="current">
+            <!-- todo: 功能待添加 -->
+            <router-link to="/" tag="li" active-class="">
               <a>文章</a>
             </router-link>
-            <router-link to="/qa" tag="li" active-class="current">
+            <router-link to="/" tag="li" active-class="">
               <a>问答</a>
             </router-link>
           </ul>
@@ -104,10 +105,10 @@
           <section class="fl col-7">
             <section class="mr20">
               <section class="b-f-link">
-                <a href="#" title="关于我们" target="_blank">关于我们</a>|
-                <a href="#" title="联系我们" target="_blank">联系我们</a>|
-                <a href="#" title="帮助中心" target="_blank">帮助中心</a>|
-                <a href="#" title="资源下载" target="_blank">资源下载</a>|
+                <a href="#" title="关于我们" target="_self">关于我们</a>|
+                <a href="#" title="联系我们" target="_self">联系我们</a>|
+                <a href="#" title="帮助中心" target="_self">帮助中心</a>|
+                <a href="#" title="资源下载" target="_self">资源下载</a>|
                 <span>mobile：13418186670</span>
                 <span>Email：wty1793172997@163.com</span>
               </section>
@@ -207,3 +208,11 @@
     }
   };
 </script>
+
+<style>
+  .elideText {
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

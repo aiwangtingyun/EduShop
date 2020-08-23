@@ -4,7 +4,7 @@ package com.wang.eduservice.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wang.commonutis.RetMsg;
 import com.wang.eduservice.entity.EduTeacher;
-import com.wang.eduservice.entity.vo.TeacherQuery;
+import com.wang.eduservice.entity.vo.TeacherQueryVo;
 import com.wang.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,11 +45,11 @@ public class EduTeacherController {
             @PathVariable Long page,
             @ApiParam(name = "limit", value = "每页记录数", required = true)
             @PathVariable Long limit,
-            @ApiParam(name = "teacherQuery", value = "查询对象", required = false)
-            @RequestBody(required = false)TeacherQuery teacherQuery) { // @RequestBody 必须使用 Post 请求
+            @ApiParam(name = "teacherQueryVo", value = "查询对象", required = false)
+            @RequestBody(required = false) TeacherQueryVo teacherQueryVo) { // @RequestBody 必须使用 Post 请求
 
         Page<EduTeacher> pageParam = new Page<>(page, limit);
-        eduTeacherService.pageQuery(pageParam, teacherQuery);
+        eduTeacherService.pageQuery(pageParam, teacherQueryVo);
 
         long total = pageParam.getTotal();  // 总记录数
         List<EduTeacher> records = pageParam.getRecords();  // 数据记录集合
