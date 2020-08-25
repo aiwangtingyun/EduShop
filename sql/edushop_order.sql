@@ -8,7 +8,7 @@
 #
 
 CREATE TABLE `t_order` (
-  `id` char(19) NOT NULL DEFAULT '',
+  `id` char(19) NOT NULL DEFAULT '' COMMENT '订单ID', 
   `order_no` varchar(20) NOT NULL DEFAULT '' COMMENT '订单号',
   `course_id` varchar(19) NOT NULL DEFAULT '' COMMENT '课程id',
   `course_title` varchar(100) DEFAULT NULL COMMENT '课程名称',
@@ -40,7 +40,7 @@ INSERT INTO `t_order` VALUES ('1195693605513891841','1195693605555834880','18','
 #
 
 CREATE TABLE `t_pay_log` (
-  `id` char(19) NOT NULL DEFAULT '',
+  `id` char(19) NOT NULL DEFAULT '' COMMENT '支付记录ID',
   `order_no` varchar(20) NOT NULL DEFAULT '' COMMENT '订单号',
   `pay_time` datetime DEFAULT NULL COMMENT '支付完成时间',
   `total_fee` decimal(10,2) DEFAULT '0.01' COMMENT '支付金额（分）',

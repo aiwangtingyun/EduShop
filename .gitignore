@@ -10,6 +10,7 @@ service/service_vod/target/*
 service/service_cms/target/*
 service/service_msm/target/*
 service/service_ucenter/target/*
+service/service_order/target/*
 common/common_utils/target/*
 common/service_base/target/*
 target/*

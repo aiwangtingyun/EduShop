@@ -70,6 +70,10 @@ http {
         location ~ /educenter/ {           
             proxy_pass http://localhost:8150;
         }
+        
+        location ~ /eduorder/ {           
+            proxy_pass http://localhost:8007;
+        }
     }
 }
 ```

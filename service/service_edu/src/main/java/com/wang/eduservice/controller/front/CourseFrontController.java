@@ -2,6 +2,7 @@ package com.wang.eduservice.controller.front;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wang.commonutis.RetMsg;
+import com.wang.commonutis.ordervo.CourseWebOrderVo;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.chapter.ChapterVo;
 import com.wang.eduservice.entity.vo.CourseFrontVo;
@@ -11,6 +12,7 @@ import com.wang.eduservice.service.EduCourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +59,20 @@ public class CourseFrontController {
         List<ChapterVo> chapterVideoList = chapterService.getChapterVideoByCourseId(courseId);
 
         return RetMsg.ok().data("courseWebInfo", courseWebVo).data("chapterVideoList",chapterVideoList);
+    }
+
+    // 根据课程id查询表订单课程信息
+    @ApiOperation("根据课程id查询表订单课程信息")
+    @GetMapping("/getCourseInfoOrder/{courseId}")
+    public CourseWebOrderVo getCourseInfoOrder(
+            @ApiParam(name = "courseId", value = "课程id")
+            @PathVariable("courseId") String courseId){
+        // 查询课程信息
+        CourseWebVo courseInfo = courseService.getWebCourseInfo(courseId);
+        // 封装返回的订单课程信息
+        CourseWebOrderVo courseWebOrderVo = new CourseWebOrderVo();
+        BeanUtils.copyProperties(courseInfo, courseWebOrderVo);
+        return courseWebOrderVo;
     }
 
 }

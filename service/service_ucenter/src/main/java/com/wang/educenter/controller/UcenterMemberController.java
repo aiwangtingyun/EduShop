@@ -3,11 +3,14 @@ package com.wang.educenter.controller;
 
 import com.wang.commonutis.JwtUtils;
 import com.wang.commonutis.RetMsg;
+import com.wang.commonutis.ordervo.UcenterMemberOrderVo;
 import com.wang.educenter.entity.UcenterMember;
 import com.wang.educenter.entity.vo.RegisterVo;
 import com.wang.educenter.service.UcenterMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,5 +60,20 @@ public class UcenterMemberController {
         UcenterMember member = memberService.getById(memberId);
         return RetMsg.ok().data("userInfo", member);
     }
+
+    // 根据用户id获取订单用户信息
+    @ApiOperation("根据用户id获取用户信息")
+    @GetMapping("/getMemberInfoOrder/{id}")
+    public UcenterMemberOrderVo getMemberInfoOrder(
+            @ApiParam(name = "id", value = "用户id", required = true)
+            @PathVariable("id") String id) {
+        // 根据id查询用户信息
+        UcenterMember ucenterMember = memberService.getById(id);
+        // 封装返回信息
+        UcenterMemberOrderVo memberOrderVo = new UcenterMemberOrderVo();
+        BeanUtils.copyProperties(ucenterMember, memberOrderVo);
+        return memberOrderVo;
+    }
+
 }
 
