@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 // 远程调用eduservice接口
 @Component
-@FeignClient("service-edu")
+@FeignClient(name = "service-edu", fallback = EduFeignClient.class)
 public interface EduClient {
 
     // 根据课程id查询表订单课程信息

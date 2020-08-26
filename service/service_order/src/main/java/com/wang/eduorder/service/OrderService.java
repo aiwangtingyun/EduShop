@@ -14,5 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface OrderService extends IService<Order> {
 
     // 根据课程id生成订单
-    String createOrder(String courserId, String memberId);
+    String createOrder(String courseId, String memberId);
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 // 远程调用ucenter接口
 @Component
-@FeignClient("service-ucenter")
+@FeignClient(name = "service-ucenter", fallback = UcenterFeignClient.class)
 public interface UcenterClient {
 
     // 根据用户id获取订单用户信息

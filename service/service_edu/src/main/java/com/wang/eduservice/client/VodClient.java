@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 //@FeignClient注解用于指定从哪个服务中调用功能，名称与被调用的服务名保持一致
-@FeignClient(name = "service-vod", fallback = VodFileDegradeFeignClient.class)
+@FeignClient(name = "service-vod", fallback = VodFeignClient.class)
 @Component
 public interface VodClient {
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 // VodClient调用出错之后执行下面对应的方法
 @Component
-public class VodFileDegradeFeignClient implements VodClient {
+public class VodFeignClient implements VodClient {
     @Override
     public RetMsg removeVideo(String videoId) {
         return RetMsg.error().message("Hystrix-删除视频出错了!");
