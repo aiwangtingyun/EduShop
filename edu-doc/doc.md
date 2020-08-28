@@ -74,6 +74,10 @@ http {
         location ~ /eduorder/ {           
             proxy_pass http://localhost:8007;
         }
+        
+        location ~ /edustatistics/ {
+            proxy_pass http://localhost:8008;
+        }
     }
 }
 ```
