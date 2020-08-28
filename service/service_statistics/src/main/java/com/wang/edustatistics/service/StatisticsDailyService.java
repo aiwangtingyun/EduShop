@@ -15,8 +15,8 @@ import java.util.Map;
  */
 public interface StatisticsDailyService extends IService<StatisticsDaily> {
 
-    // 生成某一天注册人数的统计数据
-    void registerCount(String day);
+    // 生成某一天的统计数据
+    void createData(String day);
 
     // 获取图表统计数据
     Map<String, Object> getShowData(String type, String begin, String end);

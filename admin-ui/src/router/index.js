@@ -30,7 +30,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/user',
     name: 'UserCenter',
-    meta: { title: '用户信息', icon: 'user' },
+    meta: { title: '用户中心', icon: 'user' },
     children: [{
       path: 'user',
       name: 'User',
@@ -186,7 +186,7 @@ export const constantRouterMap = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'upload' }
+        meta: { title: 'Form', icon: 'form' }
       }
     ]
   },

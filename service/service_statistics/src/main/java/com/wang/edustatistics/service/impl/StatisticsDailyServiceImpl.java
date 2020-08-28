@@ -30,9 +30,9 @@ public class StatisticsDailyServiceImpl extends ServiceImpl<StatisticsDailyMappe
     @Autowired
     private UcenterClient ucenterClient;
 
-    // 生成某一天注册人数的统计数据
+    // 生成某一天的统计数据
     @Override
-    public void registerCount(String day) {
+    public void createData(String day) {
         // 添加记录之前删除表中相同日期的数据
         QueryWrapper<StatisticsDaily> wrapper = new QueryWrapper<>();
         wrapper.eq("date_calculated", day);
@@ -44,11 +44,11 @@ public class StatisticsDailyServiceImpl extends ServiceImpl<StatisticsDailyMappe
 
         // 把获取到的数据添加数据库，统计分析表里面
         StatisticsDaily daily = new StatisticsDaily();
-        daily.setRegisterNum(countRegister);    // 注册人数
-        daily.setDateCalculated(day);   // 统计日期
-        daily.setVideoViewNum(RandomUtils.nextInt(100,200));
-        daily.setLoginNum(RandomUtils.nextInt(100,200));
-        daily.setCourseNum(RandomUtils.nextInt(100,200));
+        daily.setRegisterNum(countRegister);                    // 注册人数
+        daily.setDateCalculated(day);                           // 统计日期
+        daily.setVideoViewNum(RandomUtils.nextInt(100,200));    // 视频播放数 TODO
+        daily.setLoginNum(RandomUtils.nextInt(100,200));        // 登录人数   TODO
+        daily.setCourseNum(RandomUtils.nextInt(100,200));       // 课程新增数 TODO
         baseMapper.insert(daily);
     }
 

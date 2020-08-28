@@ -1,7 +1,9 @@
 package com.wang.edustatistics.client;
 
 import com.wang.commonutis.RetMsg;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UcenterFeignClient implements UcenterClient {
 
     @Override

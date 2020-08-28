@@ -6,7 +6,7 @@ export default {
   // 生成统计数据
   createStatisticsData(day) {
     return request({
-      url: `${api_name}/registerCount/${day}`,
+      url: `${api_name}/createData/${day}`,
       method: 'post'
     })
   },

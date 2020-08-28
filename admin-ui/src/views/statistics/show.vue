@@ -32,7 +32,7 @@
         :disabled="btnDisabled"
         type="primary"
         icon="el-icon-search"
-        @click="showChart()">查询</el-button>
+        @click="getChartData()">查询</el-button>
     </el-form>
 
     <!-- 图表数据显示区域 -->

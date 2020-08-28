@@ -28,13 +28,13 @@ public class StatisticsDailyController {
     @Autowired
     private StatisticsDailyService statisticsService;
 
-    // 生成某一天注册人数的统计数据
-    @ApiOperation("生成某一天注册人数的统计数据")
-    @PostMapping("/registerCount/{day}")
-    public RetMsg registerCount(
+    // 生成某一天的统计数据
+    @ApiOperation("生成某一天的统计数据")
+    @PostMapping("/createData/{day}")
+    public RetMsg createData(
             @ApiParam(name = "day", value = "注册日期")
             @PathVariable("day") String day) {
-        statisticsService.registerCount(day);
+        statisticsService.createData(day);
         return RetMsg.ok();
     }
 

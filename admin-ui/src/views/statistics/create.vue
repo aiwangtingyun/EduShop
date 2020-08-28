@@ -14,7 +14,7 @@
       <el-button
         :disabled="btnDisabled"
         type="primary"
-        @click="create()">生成</el-button>
+        @click="createData()">生成</el-button>
     </el-form>
   </div>
 </template>
