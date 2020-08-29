@@ -1,4 +1,4 @@
-package com.wang.commonutis.ordervo;
+package com.wang.commonutils.ordervo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

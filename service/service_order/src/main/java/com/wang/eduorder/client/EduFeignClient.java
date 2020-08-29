@@ -1,6 +1,6 @@
 package com.wang.eduorder.client;
 
-import com.wang.commonutis.ordervo.CourseWebOrderVo;
+import com.wang.commonutils.ordervo.CourseWebOrderVo;
 import org.springframework.stereotype.Component;
 
 @Component

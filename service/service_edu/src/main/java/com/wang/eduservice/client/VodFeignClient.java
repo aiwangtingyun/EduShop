@@ -1,6 +1,6 @@
 package com.wang.eduservice.client;
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

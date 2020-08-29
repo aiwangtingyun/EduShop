@@ -1,4 +1,4 @@
-package com.wang.commonutis;
+package com.wang.commonutils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

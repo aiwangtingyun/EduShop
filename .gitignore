@@ -4,6 +4,7 @@
 .mvn/*
 
 # 后端模块相关
+service/service_acl/target/*
 service/service_edu/target/*
 service/service_oss/target/*
 service/service_vod/target/*
@@ -15,6 +16,7 @@ service/service_statistics/target/*
 
 common/common_utils/target/*
 common/service_base/target/*
+common/spring_security/target/*
 
 infrastructure/canal_client/target/*
 infrastructure/gateway/target/*

@@ -1,6 +1,6 @@
 package com.wang.eduorder.client;
 
-import com.wang.commonutis.ordervo.UcenterMemberOrderVo;
+import com.wang.commonutils.ordervo.UcenterMemberOrderVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;

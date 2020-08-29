@@ -1,7 +1,7 @@
 package com.wang.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.eduservice.client.VodClient;
 import com.wang.eduservice.entity.EduVideo;
 import com.wang.eduservice.mapper.EduVideoMapper;

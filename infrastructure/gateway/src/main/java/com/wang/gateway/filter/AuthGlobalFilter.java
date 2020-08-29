@@ -1,12 +1,10 @@
 package com.wang.gateway.filter;
 
 import com.google.gson.JsonObject;
-import com.wang.commonutis.JwtUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -32,10 +30,11 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        // 获取请求地址
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
 
-        // Edushop Api 接口器，校验用户必须登录
+        // Api 接口器，校验用户必须登录
         if (antPathMatcher.match("/api/**/auth/**", path)) {
             List<String> tokenList = request.getHeaders().get("token");
             if (null == tokenList) {

@@ -1,8 +1,8 @@
 package com.wang.educenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wang.commonutis.JwtUtils;
-import com.wang.commonutis.MD5Utils;
+import com.wang.commonutils.JwtUtils;
+import com.wang.commonutils.MD5Utils;
 import com.wang.educenter.entity.UcenterMember;
 import com.wang.educenter.entity.vo.RegisterVo;
 import com.wang.educenter.mapper.UcenterMemberMapper;

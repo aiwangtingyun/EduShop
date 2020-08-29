@@ -1,4 +1,4 @@
-package com.wang.commonutis;
+package com.wang.commonutils;
 
 import java.io.IOException;
 import java.io.PrintWriter;

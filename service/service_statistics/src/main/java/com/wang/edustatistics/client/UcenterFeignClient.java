@@ -1,6 +1,6 @@
 package com.wang.edustatistics.client;
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import org.springframework.stereotype.Component;
 
 @Component

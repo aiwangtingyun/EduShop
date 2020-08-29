@@ -1,7 +1,7 @@
 package com.wang.servicebase.exceptionhandler;
 
-import com.wang.commonutis.ExceptionUtils;
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.ExceptionUtils;
+import com.wang.commonutils.RetMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

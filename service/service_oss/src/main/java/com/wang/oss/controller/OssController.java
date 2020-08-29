@@ -1,6 +1,6 @@
 package com.wang.oss.controller;
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.oss.service.OssService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

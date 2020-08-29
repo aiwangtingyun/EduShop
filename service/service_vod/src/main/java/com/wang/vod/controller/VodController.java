@@ -3,7 +3,7 @@ package com.wang.vod.controller;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
 import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.servicebase.exceptionhandler.EduShopException;
 import com.wang.vod.service.VodService;
 import com.wang.vod.utils.AliyunVodSDKUtils;

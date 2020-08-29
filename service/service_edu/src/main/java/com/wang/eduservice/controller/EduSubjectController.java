@@ -1,7 +1,7 @@
 package com.wang.eduservice.controller;
 
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.eduservice.entity.subject.FirstSubject;
 import com.wang.eduservice.service.EduSubjectService;
 import io.swagger.annotations.Api;

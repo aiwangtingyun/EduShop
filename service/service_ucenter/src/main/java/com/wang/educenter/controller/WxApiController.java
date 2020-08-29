@@ -1,7 +1,7 @@
 package com.wang.educenter.controller;
 
 import com.google.gson.Gson;
-import com.wang.commonutis.JwtUtils;
+import com.wang.commonutils.JwtUtils;
 import com.wang.educenter.entity.UcenterMember;
 import com.wang.educenter.service.UcenterMemberService;
 import com.wang.educenter.utils.ConstantWxUtils;

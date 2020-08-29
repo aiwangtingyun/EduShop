@@ -1,6 +1,6 @@
 package com.wang.eduservice.controller;
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

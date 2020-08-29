@@ -1,7 +1,7 @@
 package com.wang.edustatistics.controller;
 
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.edustatistics.service.StatisticsDailyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

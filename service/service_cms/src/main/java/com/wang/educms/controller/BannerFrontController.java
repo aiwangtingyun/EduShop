@@ -1,7 +1,7 @@
 package com.wang.educms.controller;
 
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.educms.entity.CrmBanner;
 import com.wang.educms.service.CrmBannerService;
 import io.swagger.annotations.Api;

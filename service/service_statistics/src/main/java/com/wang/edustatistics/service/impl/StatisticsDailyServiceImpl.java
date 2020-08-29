@@ -1,7 +1,7 @@
 package com.wang.edustatistics.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.edustatistics.client.UcenterClient;
 import com.wang.edustatistics.entity.StatisticsDaily;
 import com.wang.edustatistics.mapper.StatisticsDailyMapper;

@@ -1,6 +1,6 @@
 package com.wang.eduservice.client;
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;

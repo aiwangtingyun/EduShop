@@ -2,7 +2,7 @@ package com.wang.eduservice.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.eduservice.entity.EduTeacher;
 import com.wang.eduservice.entity.vo.TeacherQueryVo;
 import com.wang.eduservice.service.EduTeacherService;

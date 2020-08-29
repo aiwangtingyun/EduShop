@@ -1,7 +1,7 @@
 package com.wang.eduservice.controller;
 
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.eduservice.entity.EduVideo;
 import com.wang.eduservice.service.EduVideoService;
 import io.swagger.annotations.Api;

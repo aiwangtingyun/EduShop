@@ -1,7 +1,7 @@
 package com.wang.eduservice.controller.front;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.EduTeacher;
 import com.wang.eduservice.service.EduCourseService;

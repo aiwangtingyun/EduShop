@@ -1,4 +1,4 @@
-package com.wang.commonutis;
+package com.wang.commonutils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

@@ -1,6 +1,6 @@
 package com.wang.msm.controller;
 
-import com.wang.commonutis.RetMsg;
+import com.wang.commonutils.RetMsg;
 import com.wang.msm.service.MsmService;
 import com.wang.msm.utils.RandomUtils;
 import io.swagger.annotations.Api;

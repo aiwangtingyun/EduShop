@@ -1,9 +1,9 @@
 package com.wang.eduservice.controller.front;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wang.commonutis.JwtUtils;
-import com.wang.commonutis.RetMsg;
-import com.wang.commonutis.ordervo.CourseWebOrderVo;
+import com.wang.commonutils.JwtUtils;
+import com.wang.commonutils.RetMsg;
+import com.wang.commonutils.ordervo.CourseWebOrderVo;
 import com.wang.eduservice.client.OrderClient;
 import com.wang.eduservice.entity.EduCourse;
 import com.wang.eduservice.entity.chapter.ChapterVo;

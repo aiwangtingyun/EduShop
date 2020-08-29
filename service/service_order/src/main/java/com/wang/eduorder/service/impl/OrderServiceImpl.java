@@ -1,7 +1,7 @@
 package com.wang.eduorder.service.impl;
 
-import com.wang.commonutis.ordervo.CourseWebOrderVo;
-import com.wang.commonutis.ordervo.UcenterMemberOrderVo;
+import com.wang.commonutils.ordervo.CourseWebOrderVo;
+import com.wang.commonutils.ordervo.UcenterMemberOrderVo;
 import com.wang.eduorder.client.EduClient;
 import com.wang.eduorder.client.UcenterClient;
 import com.wang.eduorder.entity.Order;
