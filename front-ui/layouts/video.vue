@@ -1,5 +1,5 @@
 <template>
-  <div class="guli-player">
+  <div class="edushop-player">
     <div class="body">
       <div class="content">
         <nuxt/>
