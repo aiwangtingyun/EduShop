@@ -119,15 +119,21 @@
       return {
         swiperOption: {
           //配置分页
-          pagination: '.swiper-pagination',
+          pagination: {
+            el: '.swiper-pagination'
+          },
           //配置导航
           navigation: {
             nextEl: '.swiper-button-next', //下一页dom节点
             prevEl: '.swiper-button-prev' //前一页dom节点
           },
-          autoplay: true,
+          autoplay: {
+            disableOnInteraction: false,
+            delay: 2500,
+          },
           speed: 1000,
-          autoplayDisableOnInteraction : false
+          preventLinksPropagation: false,   // 阻止点击事件冒泡
+          autoplayDisableOnInteraction : false // 点击幻灯片后仍可自动播放
         },
         bannerList:[], // banner列表
         courseList:[], // 课程列表

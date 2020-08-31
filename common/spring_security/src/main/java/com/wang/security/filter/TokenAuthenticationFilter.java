@@ -42,8 +42,8 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws IOException, ServletException {
-        logger.info("================="+req.getRequestURI());
-        if(req.getRequestURI().indexOf("admin") == -1) {
+        logger.info("=================" + req.getRequestURI());
+        if(!req.getRequestURI().contains("admin")) {
             chain.doFilter(req, res);
             return;
         }
