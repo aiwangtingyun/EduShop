@@ -1,4 +1,4 @@
-package com.wang.oss.utils;
+package com.wang.allservice.utils.oss;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 // InitializingBean接口：当项目启动，spring加载之后，执行接口的方法
 @Component
 @PropertySource("classpath:application.properties")
-public class ConstantPropertiesUtils implements InitializingBean {
+public class ConstantOssUtils implements InitializingBean {
 
     // 读取配置文件内容
     @Value("${aliyun.oss.file.endpoint}")

@@ -1,9 +1,9 @@
-package com.wang.oss.service.impl;
+package com.wang.allservice.service.oss.impl;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import com.wang.oss.service.OssService;
-import com.wang.oss.utils.ConstantOssUtils;
+import com.wang.allservice.service.oss.OssService;
+import com.wang.allservice.utils.oss.ConstantOssUtils;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
