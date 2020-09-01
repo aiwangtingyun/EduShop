@@ -4,15 +4,16 @@
 .mvn/*
 
 # 后端模块相关
-service/service_acl/target/*
-service/service_edu/target/*
-service/service_oss/target/*
-service/service_vod/target/*
-service/service_cms/target/*
-service/service_msm/target/*
-service/service_ucenter/target/*
-service/service_order/target/*
-service/service_statistics/target/*
+service_cloud/service_acl/target/*
+service_cloud/service_edu/target/*
+service_cloud/service_oss/target/*
+service_cloud/service_vod/target/*
+service_cloud/service_cms/target/*
+service_cloud/service_msm/target/*
+service_cloud/service_ucenter/target/*
+service_cloud/service_order/target/*
+service_cloud/service_statistics/target/*
+service_single/target/*
 
 common/common_utils/target/*
 common/service_base/target/*

@@ -6,6 +6,7 @@
         <module>service</module>
         <module>common</module>
         <module>infrastructure</module>
+        <module>service_single</module>
     </modules>
 
     <parent>
