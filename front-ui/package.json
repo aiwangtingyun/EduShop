@@ -4,6 +4,12 @@
   "description": "EduShop在线教育前台网站",
   "author": "WangTingYun <wty1793172997@163.com>",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "localhost",
+      "port": "3000"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

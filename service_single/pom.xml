@@ -163,6 +163,10 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
+            <!-- 添加resources路径 -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
         </resources>
     </build>
 

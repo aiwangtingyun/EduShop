@@ -1,6 +1,6 @@
-﻿# Host: localhost  (Version 5.7.19)
-# Date: 2019-11-18 15:49:15
-# Generator: MySQL-Front 6.1  (Build 1.26)
+﻿# Host: localhost  (Version 5.7.30)
+# Date: 2020-08-10 11:49:32
+# Generator: SQLyog Ultimate v12.09 (64 bit)
 
 
 #
