@@ -130,7 +130,20 @@ service_cloud 模块就是所有微服务功能模块了：
 * service_ucenter 为用户管理模块，比如管理用户登录注册等
 * service_vod 为阿里云视频点播服务模块，提供阿里云视频的上传、转码、认证等功能
 
-这里需要注意的是 service_ucenter 模块由于包含了微信登录模块，而微信登录有一个登录成功后的回调网址，而网址的固定端口为 8150，所以为了使微信登录能够回调我们接口，我们可以把 service_ucenter 模块的端口修改为 8150，或者我们可以借助 nginx 来监听 8150 端口，然后转发到我们自己的实际统一调用的端口中。
+**注意**：
+
+在 service_ucenter 模块中的配置文件的微信登录配置：
+
+```properties
+# 微信 id
+wx.open.app_id=wxed9954c01bb89b47
+# 微信密钥
+wx.open.app_secret=a7482517235173ddb4083788de60b90e
+# 授权登录回调地址
+wx.open.redirect_url=http://guli.shop/api/ucenter/wx/callback
+```
+
+这三个参数都是谷粒学院提供的，特别是这个回调地址域名，谷粒学院为了方便大家测试，使用程序对这个域名地址做了特殊处理，使域名跳转到 http://localhost:8150 这个域名地址中。网址的固定端口为 8150，所以为了使微信登录能够回调我们接口，我们可以把 service_ucenter 模块的端口修改为 8150，或者我们可以借助 nginx 来监听 8150 端口，然后转发到我们自己的实际统一调用的端口中。
 
 **下面是 Nginx 代理的配置：**
 

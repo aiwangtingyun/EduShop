@@ -59,6 +59,9 @@ public class WxApiController {
     // 微信扫码回调请求
     @GetMapping("/callback")
     public String callback(String code, String state) {
+        // 从 redis 中将 state 获取出来，和当前传入的 state 作比较
+        // 如果一致则放行，如果不一致则抛出异常：非法访问
+
         try {
             // 微信扫描回调返回的code值为临时票据，相当于验证码
             // 使用code去请求微信固定的地址获取 accsess_token 和 openid
@@ -68,7 +71,7 @@ public class WxApiController {
                     "&code=%s" +
                     "&grant_type=authorization_code";
 
-            // 拼接三个参数：id、秘钥和code值
+            // 拼接三个参数：微信id、微信秘钥和code值
             String accessTokenUrl = String.format(
                     baseAccessTokenUrl,
                     ConstantWxUtils.WX_OPEN_APP_ID,
